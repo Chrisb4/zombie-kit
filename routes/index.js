@@ -8,6 +8,27 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
+/* GET questions page. */
+router.get('/questions', function(req, res, next) {
+  res.render('questions');
+});
+
+/* GET shopping_list page. */
+router.get('/shopping_list', function(req, res, next) {
+  res.render('shopping_list');
+});
+
+/* GET exit page. */
+router.get('/exit', function(req, res, next) {
+  res.render('exit');
+});
+
+
+
+
+
+
+
 // function isLoggedIn(req, res, next) {
 //   if (req.isAuthenticated()) {
 //     next();
