@@ -18,17 +18,17 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
 });
 
-/* GET questions page. */
-router.get('/questions', function(req, res, next) {
+/* GET questions page.  Deny access if not logged in. */
+router.get('/questions', isLoggedIn, function(req, res, next) {
   res.render('questions');
 });
 
-/* GET shopping_list page. */
+/* GET shopping_list page. May want to add isLoggedInfunction */
 router.get('/shopping_list', function(req, res, next) {
   res.render('shopping_list');
 });
 
-/* GET exit page. */
+/* GET exit page. May want to add isLoggedInfunction*/
 router.get('/exit', function(req, res, next) {
   res.render('exit');
 });
@@ -56,6 +56,11 @@ router.post('/signup', function(req, res, next) {
 
 router.post('/login', passport.authenticate('local'), function(req, res, next) {
     res.redirect('/questions');
+});
+
+router.get('/logout', function(req, res, next) {
+  req.logout();
+  res.redirect('/');
 });
 
 
