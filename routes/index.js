@@ -3,6 +3,16 @@ var router = express.Router();
 var User = require('../models/user');
 var passport = require('passport');
 
+
+function isLoggedIn(req, res, next) {
+  if (req.isAuthenticated()) {
+    next();
+  } else {
+    res.redirect('/');
+  }
+}
+
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express' });
@@ -24,6 +34,29 @@ router.get('/exit', function(req, res, next) {
 });
 
 
+// ROUTES FOR NEW USER SIGN UP AND USER LOGIN
+
+// POST route saves a new user to the database and redirects them on success to questions.ejs
+router.post('/signup', function(req, res, next) {
+  var user = new User({ username: req.body.username });
+  User.register(user, req.body.password, function(error) {
+    if (error) {
+      res.send(error);
+    } else {
+      req.login(user, function(loginError) {
+        if (loginError) {
+          res.send(loginError);
+        } else {
+          res.redirect('/questions');
+        }
+      });
+    }
+  })
+});
+
+router.post('/login', passport.authenticate('local'), function(req, res, next) {
+    res.redirect('/questions');
+});
 
 
 
