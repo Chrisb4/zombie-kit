@@ -29,11 +29,12 @@ $( document ).ready(function() {
   getNextQuestionV2();
 
   /* AJAX post request for results */
-  $(".productA").click(function(e) {
+  $('.productA').click(function(e) {
     var productAdisplay = $.ajax({
       url: '/results',
       type: 'POST',
-      dataType: 'json'
+      dataType: 'json',
+      data: { answer: 'a' }
     });
 
     productAdisplay.done(function(data){
