@@ -1,4 +1,5 @@
 $( document ).ready(function() {
+
   /* Version 1 of getting a question displayed */
   function getNextQuestionV1() {
     var question1 = "How attached are you to your brains?";
@@ -8,6 +9,9 @@ $( document ).ready(function() {
 
 /* Version 2 of getting a question and 2 choices displayed using AJAX */
   function getNextQuestionV2() {
+    /* hidding next question button */
+    $('.next-question').hide();
+
     var nextQuestion = $.ajax({
       url: '/questions/next',
       type: 'GET',
@@ -30,7 +34,6 @@ $( document ).ready(function() {
   };
 
   getNextQuestionV2();
-
 
 /* Event listener for choice A, function to display product, and request to hide buttons */
   $('.product-A').click(function(e) {
@@ -58,6 +61,7 @@ $( document ).ready(function() {
     productDisplay.done(function(data){
       var product = data.answer;
       $('#builder').html('<p>' + product + '</p>');
+      $('.next-question').show();
     });
 
     productDisplay.fail(function(jqXHR, textStatus, errorThrown){
