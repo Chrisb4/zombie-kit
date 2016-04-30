@@ -18,7 +18,6 @@ function isLoggedIn(req, res, next) {
   }
 }
 
-
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Zombie Kit' });
@@ -27,6 +26,11 @@ router.get('/', function(req, res, next) {
 /* GET kit builder page */
 router.get('/builder', function(req, res, next) {
   res.render('builder', { title: 'Builder | Zombie Kit' });
+});
+
+/* GET questions/next route */
+router.get('/questions/next', function(req, res, next) {
+  res.json( { question: 'Do you have any pets you are willing to sacrifice?' } );
 });
 
 /* GET questions page.  Deny access if not logged in. */
