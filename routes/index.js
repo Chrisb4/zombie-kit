@@ -33,6 +33,11 @@ router.get('/questions/next', function(req, res, next) {
   res.json( { question: 'Do you have any pets you are willing to sacrifice?' } );
 });
 
+/* POST results route */
+router.post('/results', function(req, res, next) {
+  res.json( { answerA: 'yes, one really viscious cat' } );
+});
+
 /* GET questions page.  Deny access if not logged in. */
 // router.get('/questions', isLoggedIn, function(req, res, next) {
 router.get('/questions', function(req, res, next) {
