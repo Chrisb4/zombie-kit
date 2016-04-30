@@ -9,6 +9,7 @@ var client = amazon.createClient({
   awsTag: process.env.AWS_TAG
 });
 
+
 function isLoggedIn(req, res, next) {
   if (req.isAuthenticated()) {
     next();
@@ -20,40 +21,40 @@ function isLoggedIn(req, res, next) {
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-
-  client.itemSearch({
-    keywords: 'shovel',
-    responseGroup: 'ItemAttributes,Offers,Images'
-  }).then(function(results){
-    var product = results[0];
-    // console.log(product.ItemLinks[0].ItemLink);
-    console.log(JSON.stringify(product, null, 4));
-
-    var product = {
-      title: product.ItemAttributes[0].Title[0],
-      asin: product.ASIN[0],
-      price: product.OfferSummary[0].LowestNewPrice[0].FormattedPrice[0],
-      image: product.LargeImage[0].URL[0]
-    };
-    res.render('index', { title: 'Zombie Kit', product: product});
-  }).catch(function(err){
-    console.log(JSON.stringify(err, null, 4));
-  });
-
-
+  res.render('index', { title: 'Zombie Kit' });
 });
 
 /* GET questions page.  Deny access if not logged in. */
-router.get('/questions', isLoggedIn, function(req, res, next) {
-  res.render('questions');
+// router.get('/questions', isLoggedIn, function(req, res, next) {
+router.get('/questions', function(req, res, next) {
+  var question = "How good are you with swords?";
+  res.render('questions', {title: 'Questions | Zombie Kit', question: question});
 });
 
-/* GET shopping_list page. May want to add isLoggedInfunction */
+router.get('/product', function(req, res, next) {
+  /* Amazon product search */
+  client.itemSearch({
+    keywords: 'shovel',
+    responseGroup: 'ItemAttributes,Offers,Images'
+  }, function(err, results, response){
+    console.log(results[0]);
+    var product = {
+      title: results[0].ItemAttributes[0].Title[0],
+      asin: results[0].ASIN[0],
+      price: results[0].OfferSummary[0].LowestNewPrice[0].FormattedPrice[0],
+      image: results[0].LargeImage[0].URL[0]
+    };
+    res.render('product', {title: 'Product | Zombie Kit', product: product});
+  });
+
+});
+
+/* GET shopping_list page. May want to add isLoggedIn function */
 router.get('/shopping_list', function(req, res, next) {
   res.render('shopping_list');
 });
 
-/* GET exit page. May want to add isLoggedInfunction*/
+/* GET exit page. May want to add isLoggedIn function */
 router.get('/exit', function(req, res, next) {
   res.render('exit');
 });
@@ -87,7 +88,6 @@ router.get('/logout', function(req, res, next) {
   req.logout();
   res.redirect('/');
 });
-
 
 
 module.exports = router;
