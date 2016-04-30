@@ -36,7 +36,13 @@ router.get('/questions/next', function(req, res, next) {
 /* POST results route */
 router.post('/results', function(req, res, next) {
   var clickedAnswer = req.body.answer;
-  res.json( { answerA: 'yes, one really viscious cat,' + ' ' + clickedAnswer} );
+  var answer;
+  if (clickedAnswer === 'A') {
+    answer = 'Great, pet brains are tasty';
+  } else {
+    answer = 'no worries, kids will work too';
+  }
+  res.json( { answer: answer } );
 });
 
 /* GET questions page.  Deny access if not logged in. */
