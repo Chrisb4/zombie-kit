@@ -89,7 +89,7 @@ router.post('/signup', function(req, res, next) {
 });
 
 router.post('/login', passport.authenticate('local'), function(req, res, next) {
-    res.redirect('/questions');
+  res.redirect('/questions');
 });
 
 router.get('/logout', function(req, res, next) {
