@@ -9,7 +9,7 @@ var client = amazon.createClient({
   awsTag: process.env.AWS_TAG
 });
 
-
+/* middleware for Logging in */
 function isLoggedIn(req, res, next) {
   if (req.isAuthenticated()) {
     next();
@@ -22,6 +22,11 @@ function isLoggedIn(req, res, next) {
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Zombie Kit' });
+});
+
+/* GET kit builder page */
+router.get('/builder', function(req, res, next) {
+  res.render('builder', { title: 'Builder | Zombie Kit' });
 });
 
 /* GET questions page.  Deny access if not logged in. */
@@ -61,7 +66,6 @@ router.get('/exit', function(req, res, next) {
 
 
 // ROUTES FOR NEW USER SIGN UP AND USER LOGIN
-
 // POST route saves a new user to the database and redirects them on success to questions.ejs
 router.post('/signup', function(req, res, next) {
   var user = new User({ username: req.body.username });
