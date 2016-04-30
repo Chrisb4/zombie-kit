@@ -32,14 +32,18 @@ $( document ).ready(function() {
   getNextQuestionV2();
 
 
-/* Event listener for A */
+/* Event listener for choice A, function to display product, and request to hide buttons */
   $('.productA').click(function(e) {
     productChosen('A');
+    $('.productA').hide();
+    $('.productB').hide();
   });
 
-/* Event listener for B */
+/* Event listener for choice B, function to display product, and request to hide buttons */
   $('.productB').click(function(e) {
     productChosen('B');
+    $('.productA').hide();
+    $('.productB').hide();
   });
 
 /* AJAX results function to determine A or B */
