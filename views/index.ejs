@@ -6,10 +6,13 @@
   </head>
   <body>
 
-      <audio src="audio/Thriller.mp3" controls autoplay loop>
+      <!-- <audio src="audio/Thriller.mp3" controls autoplay loop>
       <p>Your browser does not support the <code>audio</code> element.</p>
-</audio>
-
+ </audio> -->
+  <div><img src="<%= product.image %>" alt="<%= product.title %>"></div>
+  <p><strong>Title:</strong> <%= product.title %></p>
+  <p><strong>ASIN:</strong> <%= product.asin %></p>
+  <p><strong>Price:</strong> <%= product.price %></p>
 
     <div class="container">
       <div class="jumbotron text-center">

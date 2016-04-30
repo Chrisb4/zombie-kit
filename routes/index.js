@@ -2,7 +2,12 @@ var express = require('express');
 var router = express.Router();
 var User = require('../models/user');
 var passport = require('passport');
-
+var amazon = require('amazon-product-api');
+var client = amazon.createClient({
+  awsId: process.env.AWS_ACCESS_KEY_ID,
+  awsSecret: process.env.AWS_SECRET_KEY,
+  awsTag: process.env.AWS_TAG
+});
 
 function isLoggedIn(req, res, next) {
   if (req.isAuthenticated()) {
@@ -15,7 +20,27 @@ function isLoggedIn(req, res, next) {
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Zombie Kit' });
+
+  client.itemSearch({
+    keywords: 'shovel',
+    responseGroup: 'ItemAttributes,Offers,Images'
+  }).then(function(results){
+    var product = results[0];
+    // console.log(product.ItemLinks[0].ItemLink);
+    console.log(JSON.stringify(product, null, 4));
+
+    var product = {
+      title: product.ItemAttributes[0].Title[0],
+      asin: product.ASIN[0],
+      price: product.OfferSummary[0].LowestNewPrice[0].FormattedPrice[0],
+      image: product.LargeImage[0].URL[0]
+    };
+    res.render('index', { title: 'Zombie Kit', product: product});
+  }).catch(function(err){
+    console.log(JSON.stringify(err, null, 4));
+  });
+
+
 });
 
 /* GET questions page.  Deny access if not logged in. */
@@ -64,50 +89,5 @@ router.get('/logout', function(req, res, next) {
 });
 
 
-
-
-
-// function isLoggedIn(req, res, next) {
-//   if (req.isAuthenticated()) {
-//     next();
-//   } else {
-//     res.redirect('/');
-//   }
-// }
-
-// /* GET home page. */
-// router.get('/', function(req, res, next) {
-//   res.render('index', { title: 'Express' });
-// });
-
-// router.get('/logout', function(req, res, next) {
-//   req.logout();
-//   res.redirect('/');
-// });
-
-// router.post('/login', passport.authenticate('local'), function(req, res, next) {
-//   res.redirect('/profile');
-// });
-
-// router.get('/profile', isLoggedIn, function(req, res, next) {
-//   res.render('profile', { username: req.user.username })
-// });
-
-// router.post('/signup', function(req, res, next) {
-//   var user = new User({ username: req.body.username });
-//   User.register(user, req.body.password, function(error) {
-//     if (error) {
-//       res.send(error);
-//     } else {
-//       req.login(user, function(loginError) {
-//         if (loginError) {
-//           res.send(loginError);
-//         } else {
-//           res.redirect('/profile');
-//         }
-//       });
-//     }
-//   })
-// });
 
 module.exports = router;
