@@ -35,7 +35,8 @@ router.get('/questions/next', function(req, res, next) {
 
 /* POST results route */
 router.post('/results', function(req, res, next) {
-  res.json( { answerA: 'yes, one really viscious cat' } );
+  var clickedAnswer = req.body.answer;
+  res.json( { answerA: 'yes, one really viscious cat,' + ' ' + clickedAnswer} );
 });
 
 /* GET questions page.  Deny access if not logged in. */
