@@ -20,8 +20,8 @@ $( document ).ready(function() {
       var choiceA = data.choiceA;
       var choiceB = data.choiceB;
       $('#builder').html('<p>' + question + '</p>');
-      $('.productA').text(choiceA);
-      $('.productB').text(choiceB);
+      $('.product-A').text(choiceA);
+      $('.product-B').text(choiceB);
     });
 
     nextQuestion.fail(function(jqXHR, textStatus, errorThrown){
@@ -33,17 +33,17 @@ $( document ).ready(function() {
 
 
 /* Event listener for choice A, function to display product, and request to hide buttons */
-  $('.productA').click(function(e) {
+  $('.product-A').click(function(e) {
     productChosen('A');
-    $('.productA').hide();
-    $('.productB').hide();
+    $('.product-A').hide();
+    $('.product-B').hide();
   });
 
 /* Event listener for choice B, function to display product, and request to hide buttons */
-  $('.productB').click(function(e) {
+  $('.product-B').click(function(e) {
     productChosen('B');
-    $('.productA').hide();
-    $('.productB').hide();
+    $('.product-A').hide();
+    $('.product-B').hide();
   });
 
 /* AJAX results function to determine A or B */
