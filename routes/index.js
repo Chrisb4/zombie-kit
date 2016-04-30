@@ -31,8 +31,8 @@ router.get('/builder', function(req, res, next) {
 /* GET questions/next route */
 router.get('/questions/next', function(req, res, next) {
   res.json( { question: 'Do you have any pets you are willing to sacrifice?',
-              choiceAtext: 'I have a pet, but...',
-              choiceBtext: 'no!' } );
+              choiceA: 'I have a pet, but...',
+              choiceB: 'no!' } );
 });
 
 /* POST results route */

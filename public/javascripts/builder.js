@@ -6,7 +6,7 @@ $( document ).ready(function() {
   };
   // getNextQuestionV1();
 
-/* Version 2 of getting a question displayed using AJAX */
+/* Version 2 of getting a question and 2 choices displayed using AJAX */
   function getNextQuestionV2() {
     var nextQuestion = $.ajax({
       url: '/questions/next',
@@ -17,7 +17,11 @@ $( document ).ready(function() {
     nextQuestion.done(function(data){
       console.log(data);
       var question = data.question;
+      var choiceA = data.choiceA;
+      var choiceB = data.choiceB;
       $('#builder').html('<p>' + question + '</p>');
+      $('.productA').text(choiceA);
+      $('.productB').text(choiceB);
     });
 
     nextQuestion.fail(function(jqXHR, textStatus, errorThrown){
