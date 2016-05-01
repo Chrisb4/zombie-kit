@@ -10,7 +10,7 @@ $( document ).ready(function() {
 /* Version 2 of getting a question and 2 choices displayed using AJAX */
   function getNextQuestionV2() {
     /* hidding next question button */
-    $('.next-question').hide();
+    $('.next-question-button').hide();
 
     var nextQuestion = $.ajax({
       url: '/questions/next',
@@ -24,8 +24,8 @@ $( document ).ready(function() {
       var choiceA = data.choiceA;
       var choiceB = data.choiceB;
       $('#builder').html('<p>' + question + '</p>');
-      $('.product-A').text(choiceA);
-      $('.product-B').text(choiceB);
+      $('.product-A').text(choiceA).show();
+      $('.product-B').text(choiceB).show();
     });
 
     nextQuestion.fail(function(jqXHR, textStatus, errorThrown){
@@ -49,6 +49,11 @@ $( document ).ready(function() {
     $('.product-B').hide();
   });
 
+  // Event listener for next question button
+  $('.next-question-button').click(function(e) {
+    getNextQuestionV2();
+  });
+
 /* AJAX results function to determine A or B */
   function productChosen(answerClicked) {
     var productDisplay = $.ajax({
@@ -61,7 +66,7 @@ $( document ).ready(function() {
     productDisplay.done(function(data){
       var product = data.answer;
       $('#builder').html('<p>' + product + '</p>');
-      $('.next-question').show();
+      $('.next-question-button').show();
     });
 
     productDisplay.fail(function(jqXHR, textStatus, errorThrown){
