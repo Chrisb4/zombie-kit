@@ -17,7 +17,6 @@ passport.use(User.createStrategy());
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
-
 var routes = require('./routes/index');
 var users = require('./routes/users');
 

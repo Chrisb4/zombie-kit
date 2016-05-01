@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 var User = require('../models/user');
 var passport = require('passport');
+
+// Amazon client setup
 var amazon = require('amazon-product-api');
 var client = amazon.createClient({
   awsId: process.env.AWS_ACCESS_KEY_ID,
@@ -9,7 +11,36 @@ var client = amazon.createClient({
   awsTag: process.env.AWS_TAG
 });
 
-/* middleware for Logging in */
+// VIEWS
+// GET home page
+router.get('/', function(req, res, next) {
+  res.render('index', { title: 'Zombie Kit' });
+});
+
+// GET kit builder page
+router.get('/builder', function(req, res, next) {
+  res.render('builder', { title: 'Builder | Zombie Kit' });
+});
+
+// GET shopping_list page. May want to add isLoggedIn function
+router.get('/shopping_list', function(req, res, next) {
+  res.render('shopping_list');
+});
+
+// GET exit page. May want to add isLoggedIn function
+router.get('/exit', function(req, res, next) {
+  res.render('exit');
+});
+
+// GET questions page. Deny access if not logged in
+// router.get('/questions', isLoggedIn, function(req, res, next) { (commented out during Dev)
+router.get('/questions', function(req, res, next) { //(delete for deployment)
+  var question = "How good are you with swords?";
+  res.render('questions', {title: 'Questions | Zombie Kit', question: question});
+});
+
+// MIDDLEWARE
+// middleware for Logging in
 function isLoggedIn(req, res, next) {
   if (req.isAuthenticated()) {
     next();
@@ -18,25 +49,17 @@ function isLoggedIn(req, res, next) {
   }
 }
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Zombie Kit' });
-});
-
-/* GET kit builder page */
-router.get('/builder', function(req, res, next) {
-  res.render('builder', { title: 'Builder | Zombie Kit' });
-});
-
-/* GET questions/next route */
+// ROUTES
+// QUESTIONS AND ANSWERS ROUTES
+// GET questions/next route
 router.get('/questions/next', function(req, res, next) {
   res.json( { question: 'Do you have any pets you are willing to sacrifice?',
               choiceA: 'I have a pet, but...',
               choiceB: 'no!' } );
 });
 
-/* POST results route */
-router.post('/results', function(req, res, next) {
+// POST answers route
+router.post('/answers', function(req, res, next) {
   var clickedAnswer = req.body.answer;
   var answer;
   if (clickedAnswer === 'A') {
@@ -47,15 +70,10 @@ router.post('/results', function(req, res, next) {
   res.json( { answer: answer } );
 });
 
-/* GET questions page. Deny access if not logged in. */
-// router.get('/questions', isLoggedIn, function(req, res, next) {
-router.get('/questions', function(req, res, next) {
-  var question = "How good are you with swords?";
-  res.render('questions', {title: 'Questions | Zombie Kit', question: question});
-});
-
+// AMAZON PRODUCTS ROUTES
+// GET product page
 router.get('/product', function(req, res, next) {
-  /* Amazon product search */
+  // Amazon product search
   client.itemSearch({
     keywords: 'shovel',
     responseGroup: 'ItemAttributes,Offers,Images'
@@ -69,19 +87,7 @@ router.get('/product', function(req, res, next) {
     };
     res.render('product', {title: 'Product | Zombie Kit', product: product});
   });
-
 });
-
-/* GET shopping_list page. May want to add isLoggedIn function */
-router.get('/shopping_list', function(req, res, next) {
-  res.render('shopping_list');
-});
-
-/* GET exit page. May want to add isLoggedIn function */
-router.get('/exit', function(req, res, next) {
-  res.render('exit');
-});
-
 
 // ROUTES FOR NEW USER SIGN UP AND USER LOGIN
 // POST route saves a new user to the database and redirects them on success to questions.ejs
@@ -110,6 +116,5 @@ router.get('/logout', function(req, res, next) {
   req.logout();
   res.redirect('/');
 });
-
 
 module.exports = router;

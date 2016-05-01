@@ -1,15 +1,39 @@
 $( document ).ready(function() {
 
-  /* Version 1 of getting a question displayed */
-  function getNextQuestionV1() {
-    var question1 = "How attached are you to your brains?";
-    $('#builder').html(question1);
-  };
+// FUNCTION CALLS
   // getNextQuestionV1();
+  getNextQuestionV2();
 
-/* Version 2 of getting a question and 2 choices displayed using AJAX */
+// EVENT LISTENERS
+  // Event listener for choice A, function to display answer, and request to hide buttons
+  $('.choice-A-button').click(function(e) {
+    answerChosen('A');
+    $('.choice-A-button').hide();
+    $('.choice-B-button').hide();
+  });
+
+  // Event listener for choice B, function to display answer, and request to hide buttons
+  $('.choice-B-button').click(function(e) {
+    answerChosen('B');
+    $('.choice-A-button').hide();
+    $('.choice-B-button').hide();
+  });
+
+  // Event listener for next question button
+  $('.next-question-button').click(function(e) {
+    getNextQuestionV2();
+  });
+
+// FUNCTIONS
+  // Version 1 of getting a question displayed
+/*  function getNextQuestionV1() {
+    var question1 = "How attached are you to your brains?";
+    $('#builder-questions').html(question1);
+  };*/
+
+  // Version 2 of getting a question and 2 choices displayed using AJAX
   function getNextQuestionV2() {
-    /* hidding next question button */
+    // hidding next question button
     $('.next-question-button').hide();
 
     var nextQuestion = $.ajax({
@@ -23,9 +47,9 @@ $( document ).ready(function() {
       var question = data.question;
       var choiceA = data.choiceA;
       var choiceB = data.choiceB;
-      $('#builder').html('<p>' + question + '</p>');
-      $('.product-A').text(choiceA).show();
-      $('.product-B').text(choiceB).show();
+      $('#builder-questions').html('<p>' + question + '</p>');
+      $('.choice-A-button').text(choiceA).show();
+      $('.choice-B-button').text(choiceB).show();
     });
 
     nextQuestion.fail(function(jqXHR, textStatus, errorThrown){
@@ -33,48 +57,24 @@ $( document ).ready(function() {
     });
   };
 
-  getNextQuestionV2();
-
-/* Event listener for choice A, function to display product, and request to hide buttons */
-  $('.product-A').click(function(e) {
-    productChosen('A');
-    $('.product-A').hide();
-    $('.product-B').hide();
-  });
-
-/* Event listener for choice B, function to display product, and request to hide buttons */
-  $('.product-B').click(function(e) {
-    productChosen('B');
-    $('.product-A').hide();
-    $('.product-B').hide();
-  });
-
-  // Event listener for next question button
-  $('.next-question-button').click(function(e) {
-    getNextQuestionV2();
-  });
-
-/* AJAX results function to determine A or B */
-  function productChosen(answerClicked) {
-    var productDisplay = $.ajax({
-      url: '/results',
+  // AJAX answer function to determine A or B
+  function answerChosen(answerClicked) {
+    var answerDisplay = $.ajax({
+      url: '/answers',
       type: 'POST',
       dataType: 'json',
       data: { answer: answerClicked }
     });
 
-    productDisplay.done(function(data){
-      var product = data.answer;
-      $('#builder').html('<p>' + product + '</p>');
+    answerDisplay.done(function(data){
+      var answer = data.answer;
+      $('#builder-questions').html('<p>' + answer + '</p>');
       $('.next-question-button').show();
     });
 
-    productDisplay.fail(function(jqXHR, textStatus, errorThrown){
+    answerDisplay.fail(function(jqXHR, textStatus, errorThrown){
       console.log(errorThrown);
     });
   }
-
-
-
 
 });
