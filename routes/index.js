@@ -58,7 +58,7 @@ router.get('/questions/next', function(req, res, next) {
               choiceB: 'no!' } );
 });
 
-// POST choices route
+// POST choices route. Choice selected and response route
 router.post('/choices', function(req, res, next) {
   var choiceClicked = req.body.choiceClicked;
   var response;

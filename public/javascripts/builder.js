@@ -22,6 +22,11 @@ $( document ).ready(function() {
     getNextQuestionV2();
   });
 
+// Event listener for adding product to cart button
+  $('.add-to-cart-button').click(function(e) {
+
+  });
+
 // FUNCTIONS
   // Version 1 of getting a question displayed
 /*  function getNextQuestionV1() {
