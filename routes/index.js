@@ -21,7 +21,7 @@ router.get('/', function(req, res, next) {
 });
 
 // GET kit builder page
-router.get('/builder', function(req, res, next) {
+router.get('/builder', isLoggedIn, function(req, res, next) {
   res.render('builder', { title: 'Builder | Zombie Kit' });
 });
 
@@ -119,8 +119,9 @@ router.get('/product', function(req, res, next) {
 
 // POST cart items route
 router.post('/cart-items', function(req, res, next) {
+  console.log(req);
   // res.json({ status: 'successful' });
-  var cartItem = new CartItem({ userId: 1,
+  var cartItem = new CartItem({ userId: req.user._id,
                                 title: req.body.product.title,
                                 ASIN: req.body.product.ASIN,
                                 price: req.body.product.price,

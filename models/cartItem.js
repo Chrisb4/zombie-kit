@@ -1,7 +1,7 @@
 var mongoose = require("mongoose");
 
 var cartItemSchema = {
- userId: Number,
+ userId: String,
  title: String,
  ASIN: String,
  price: String,
