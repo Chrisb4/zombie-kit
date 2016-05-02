@@ -58,25 +58,38 @@ router.get('/questions/next', function(req, res, next) {
               choiceB: 'no!' } );
 });
 
-// POST choices route. Choice selected and response route
+// POST choices route. Choice selected and response route with Amazon product
 router.post('/choices', function(req, res, next) {
   var choiceClicked = req.body.choiceClicked;
   var response;
-  var product = {
-      title: 'Human Smell Deterrent Zombie',
-      ASIN: '123456',
-      price: '19.99',
-      image: 'images/Weasel_Hoarder_zombie.png'
-  };
   if (choiceClicked === 'A') {
     response = 'Great, pet brains are tasty';
   } else {
     response = 'no worries, kids will work too';
   }
-  res.json( { response: response, product: product });
+
+  var productSearch = client.itemSearch({
+    keywords: 'shovel',
+    responseGroup: 'ItemAttributes,Offers,Images'
+  });
+
+  productSearch.then(function(results) {
+    console.log(results[0]);
+    var product = {
+      title: results[0].ItemAttributes[0].Title[0],
+      ASIN: results[0].ASIN[0],
+      price: results[0].OfferSummary[0].LowestNewPrice[0].FormattedPrice[0],
+      image: results[0].LargeImage[0].URL[0]
+    };
+    res.json( { response: response, product: product });
+  });
+
+  productSearch.catch(function() {
+    console.log('product search failed');
+  });
 });
 
-// AMAZON PRODUCTS ROUTES
+// AMAZON PRODUCTS ROUTE
 // GET product page
 router.get('/product', function(req, res, next) {
   // Amazon product search
@@ -85,7 +98,7 @@ router.get('/product', function(req, res, next) {
     responseGroup: 'ItemAttributes,Offers,Images'
   });
 
-  productSearch.done(function(err, results, response) {
+  productSearch.then(function(results) {
     console.log(results[0]);
     var product = {
       title: results[0].ItemAttributes[0].Title[0],
@@ -96,7 +109,7 @@ router.get('/product', function(req, res, next) {
     res.render('product', {title: 'Product | Zombie Kit', product: product});
   });
 
-  productSearch.fail(function() {
+  productSearch.catch(function() {
     console.log('product search failed');
   });
 });

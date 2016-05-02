@@ -98,6 +98,7 @@ $( document ).ready(function() {
 
   // Adding product to cart with AJAX call
   function addProductToCart(currentProduct) {
+    $('.add-to-cart-button').hide();
 
     var addToCart = $.ajax({
       url: '/cart-items',
