@@ -21,13 +21,15 @@ function isLoggedIn(req, res, next) {
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
+
   res.render('index', { title: 'Zombie Kit' });
 });
 
 /* GET questions page.  Deny access if not logged in. */
 // router.get('/questions', isLoggedIn, function(req, res, next) {
-router.get('/questions', function(req, res, next) {
+router.get('/questions', isLoggedIn, function(req, res, next) {
   var question = "How good are you with swords?";
+
   res.render('questions', {title: 'Questions | Zombie Kit', question: question});
 });
 
@@ -37,7 +39,7 @@ router.get('/product', function(req, res, next) {
     keywords: 'shovel',
     responseGroup: 'ItemAttributes,Offers,Images'
   }, function(err, results, response){
-    console.log(results[0]);
+    console.log(results[0].ItemAttributes[0].Title[0]);
     var product = {
       title: results[0].ItemAttributes[0].Title[0],
       asin: results[0].ASIN[0],

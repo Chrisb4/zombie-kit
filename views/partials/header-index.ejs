@@ -14,7 +14,19 @@
           </a>
         </div>
         <p class="navbar-text" id="nav-title">Zombie Kit </p>
+        <form class="navbar-form navbar-right" action="/login" method="post">
+          <div class="form-group">
+            <label for="username">Username:</label>
+            <input type="text" name="username" class="form-control">
+          </div>
 
+          <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" name="password" class="form-control">
+          </div>
+
+          <input type="submit" value="Log In" class="btn btn-default">
+        </form>
 
       </div>
     </nav>
