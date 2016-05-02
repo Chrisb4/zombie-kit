@@ -21,16 +21,19 @@ function isLoggedIn(req, res, next) {
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-
-  res.render('index', { title: 'Zombie Kit' });
+  res.render('index', {
+    title: 'Zombie Kit'
+  });
 });
 
 /* GET questions page.  Deny access if not logged in. */
 // router.get('/questions', isLoggedIn, function(req, res, next) {
 router.get('/questions', isLoggedIn, function(req, res, next) {
   var question = "How good are you with swords?";
-
-  res.render('questions', {title: 'Questions | Zombie Kit', question: question});
+  res.render('questions', {
+    title: 'Questions | Zombie Kit',
+    question: question
+  });
 });
 
 router.get('/product', function(req, res, next) {
@@ -38,7 +41,7 @@ router.get('/product', function(req, res, next) {
   client.itemSearch({
     keywords: 'shovel',
     responseGroup: 'ItemAttributes,Offers,Images'
-  }, function(err, results, response){
+  }, function(err, results, response) {
     console.log(results[0].ItemAttributes[0].Title[0]);
     var product = {
       title: results[0].ItemAttributes[0].Title[0],
@@ -46,7 +49,10 @@ router.get('/product', function(req, res, next) {
       price: results[0].OfferSummary[0].LowestNewPrice[0].FormattedPrice[0],
       image: results[0].LargeImage[0].URL[0]
     };
-    res.render('product', {title: 'Product | Zombie Kit', product: product});
+    res.render('product', {
+      title: 'Product | Zombie Kit',
+      product: product
+    });
   });
 
 });
@@ -66,7 +72,9 @@ router.get('/exit', function(req, res, next) {
 
 // POST route saves a new user to the database and redirects them on success to questions.ejs
 router.post('/signup', function(req, res, next) {
-  var user = new User({ username: req.body.username });
+  var user = new User({
+    username: req.body.username
+  });
   User.register(user, req.body.password, function(error) {
     if (error) {
       res.send(error);
@@ -83,7 +91,7 @@ router.post('/signup', function(req, res, next) {
 });
 
 router.post('/login', passport.authenticate('local'), function(req, res, next) {
-    res.redirect('/questions');
+  res.redirect('/questions');
 });
 
 router.get('/logout', function(req, res, next) {
