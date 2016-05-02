@@ -36,7 +36,7 @@ router.get('/exit', function(req, res, next) {
 // router.get('/questions', isLoggedIn, function(req, res, next) { (commented out during Dev)
 router.get('/questions', function(req, res, next) { //(delete for deployment)
   var question = "How good are you with swords?";
-  res.render('questions', {title: 'Questions | Zombie Kit', question: question});
+  res.render('questions', { title: 'Questions | Zombie Kit', question: question });
 });
 
 // MIDDLEWARE
@@ -53,9 +53,9 @@ function isLoggedIn(req, res, next) {
 // QUESTIONS AND CHOICES ROUTES
 // GET questions/next route
 router.get('/questions/next', function(req, res, next) {
-  res.json( { question: 'Do you have any pets you are willing to sacrifice?',
+  res.json({ question: 'Do you have any pets you are willing to sacrifice?',
               choiceA: 'I have a pet, but...',
-              choiceB: 'no!' } );
+              choiceB: 'no!' });
 });
 
 // POST choices route. Choice selected and response route with Amazon product
@@ -81,7 +81,7 @@ router.post('/choices', function(req, res, next) {
       price: results[0].OfferSummary[0].LowestNewPrice[0].FormattedPrice[0],
       image: results[0].LargeImage[0].URL[0]
     };
-    res.json( { response: response, product: product });
+    res.json({ response: response, product: product });
   });
 
   productSearch.catch(function() {
@@ -89,7 +89,7 @@ router.post('/choices', function(req, res, next) {
   });
 });
 
-// AMAZON PRODUCTS ROUTE
+// AMAZON TEST PRODUCTS ROUTE
 // GET product page
 router.get('/product', function(req, res, next) {
   // Amazon product search
@@ -106,7 +106,7 @@ router.get('/product', function(req, res, next) {
       price: results[0].OfferSummary[0].LowestNewPrice[0].FormattedPrice[0],
       image: results[0].LargeImage[0].URL[0]
     };
-    res.render('product', {title: 'Product | Zombie Kit', product: product});
+    res.render('product', { title: 'Product | Zombie Kit', product: product });
   });
 
   productSearch.catch(function() {
@@ -115,9 +115,9 @@ router.get('/product', function(req, res, next) {
 });
 
 // POST cart items route
-// router.post('/cart-items', function(req, res, next) {
-//   res.json( {});
-// });
+router.post('/cart-items', function(req, res, next) {
+  res.json({ status: 'successful' });
+});
 
 // ROUTES FOR NEW USER SIGN UP AND USER LOGIN
 // POST route saves a new user to the database and redirects them on success to questions.ejs
