@@ -119,7 +119,19 @@ router.get('/product', function(req, res, next) {
 
 // POST cart items route
 router.post('/cart-items', function(req, res, next) {
-  res.json({ status: 'successful' });
+  // res.json({ status: 'successful' });
+  var cartItem = new CartItem({ userId: 1,
+                                title: req.body.product.title,
+                                ASIN: req.body.product.ASIN,
+                                price: req.body.product.price,
+                                image: req.body.product.image });
+  cartItem.save(cartItem, function(error) {
+    if (error) {
+      res.send(error);
+    } else {
+      res.json(cartItem);
+    }
+  })
 });
 
 // ROUTES FOR NEW USER SIGN UP AND USER LOGIN

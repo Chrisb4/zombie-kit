@@ -104,7 +104,8 @@ $( document ).ready(function() {
       url: '/cart-items',
       type: 'POST',
       dataType: 'json',
-      data: {product: currentProduct}
+      contentType: 'application/json',
+      data: JSON.stringify({product: currentProduct})
     });
 
     addToCart.done(function(data){
