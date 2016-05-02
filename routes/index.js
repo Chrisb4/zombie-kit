@@ -101,6 +101,11 @@ router.get('/product', function(req, res, next) {
   });
 });
 
+// POST cart items route
+// router.post('/cart-items', function(req, res, next) {
+//   res.json( {});
+// });
+
 // ROUTES FOR NEW USER SIGN UP AND USER LOGIN
 // POST route saves a new user to the database and redirects them on success to questions.ejs
 router.post('/signup', function(req, res, next) {

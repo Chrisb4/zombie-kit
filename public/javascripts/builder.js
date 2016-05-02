@@ -1,8 +1,9 @@
 $( document ).ready(function() {
 
-// FUNCTION CALLS
+// FUNCTION CALLS AND VARIABLES NEEDED AT PAGE LOAD
   // getNextQuestionV1();
   getNextQuestionV2();
+  var currentProduct;
 
 // EVENT LISTENERS
   // Event listener for choice A, function to display response, and request to hide buttons
@@ -24,7 +25,7 @@ $( document ).ready(function() {
 
 // Event listener for adding product to cart button
   $('.add-to-cart-button').click(function(e) {
-
+    addProductToCart(currentProduct);
   });
 
 // FUNCTIONS
@@ -34,10 +35,11 @@ $( document ).ready(function() {
     $('#builder-text').html(question1);
   };*/
 
-  // Version 2 of getting a question and 2 choices displayed using AJAX
+  // Version 2 of getting a question and 2 choices displayed with AJAX
   function getNextQuestionV2() {
     // hidding next question button
     $('.next-question-button').hide();
+    $('.add-to-cart-button').hide();
 
     var nextQuestion = $.ajax({
       url: '/questions/next',
@@ -72,12 +74,19 @@ $( document ).ready(function() {
 
     choiceDisplay.done(function(data){
       var response = data.response;
-      var title = data.product.title;
-      var ASIN = data.product.asin;
-      var price = data.product.price;
-      var image = data.product.image;
+      // setting product selected to current product global variable
+      currentProduct = data.product;
       $('#builder-text').html('<p>' + response + '</p>');
-      $('#product-display').html('<ul><li>' + title + '</li><li>' + ASIN + '</li><li>' + price + '</li><li><img src="' + image + '" width=200px></li></ul>');
+      $('#product-display').html(
+        '<ul>' +
+          '<li>' + currentProduct.title + '</li>' +
+          '<li>' + currentProduct.ASIN + '</li>' +
+          '<li>' + currentProduct.price + '</li>' +
+          '<li>' +
+            '<img src="' + currentProduct.image + '" width=200px>' +
+          '</li>' +
+        '</ul>');
+      $('.add-to-cart-button').show();
       $('.next-question-button').show();
     });
 
@@ -85,5 +94,24 @@ $( document ).ready(function() {
       console.log(errorThrown);
     });
   }
+
+  // Adding product to cart with AJAX call
+  function addProductToCart(currentProduct) {
+
+    var addToCart = $.ajax({
+      url: '/cart-items',
+      type: 'POST',
+      dataType: 'json',
+      data: {product: currentProduct}
+    });
+
+    addToCart.done(function(data){
+      console.log(data);
+    });
+
+    addToCart.fail(function(jqXHR, textStatus, errorThrown){
+      console.log(errorThrown);
+    });
+  };
 
 });
