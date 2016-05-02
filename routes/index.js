@@ -1,7 +1,10 @@
 var express = require('express');
 var router = express.Router();
-var User = require('../models/user');
 var passport = require('passport');
+
+// Models
+var User = require('../models/user');
+var CartItem = require('../models/cartItem');
 
 // Amazon client setup
 var amazon = require('amazon-product-api');
@@ -102,7 +105,7 @@ router.get('/product', function(req, res, next) {
     console.log(results[0]);
     var product = {
       title: results[0].ItemAttributes[0].Title[0],
-      asin: results[0].ASIN[0],
+      ASIN: results[0].ASIN[0],
       price: results[0].OfferSummary[0].LowestNewPrice[0].FormattedPrice[0],
       image: results[0].LargeImage[0].URL[0]
     };
