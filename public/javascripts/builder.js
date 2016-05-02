@@ -67,7 +67,12 @@ $( document ).ready(function() {
 
     choiceDisplay.done(function(data){
       var response = data.response;
+      var title = data.product.title;
+      var ASIN = data.product.asin;
+      var price = data.product.price;
+      var image = data.product.image;
       $('#builder-text').html('<p>' + response + '</p>');
+      $('#product-display').html('<ul><li>' + title + '</li><li>' + ASIN + '</li><li>' + price + '</li><li><img src="' + image + '" width=200px></li></ul>');
       $('.next-question-button').show();
     });
 

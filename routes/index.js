@@ -62,12 +62,18 @@ router.get('/questions/next', function(req, res, next) {
 router.post('/choices', function(req, res, next) {
   var choiceClicked = req.body.choiceClicked;
   var response;
+  var product = {
+      title: 'Human Smell Deterrent Zombie',
+      asin: '123456',
+      price: '19.99',
+      image: 'images/Weasel_Hoarder_zombie.png'
+  };
   if (choiceClicked === 'A') {
     response = 'Great, pet brains are tasty';
   } else {
     response = 'no worries, kids will work too';
   }
-  res.json( { response: response } );
+  res.json( { response: response, product: product });
 });
 
 // AMAZON PRODUCTS ROUTES
