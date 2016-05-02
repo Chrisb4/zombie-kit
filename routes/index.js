@@ -138,7 +138,9 @@ router.post('/cart-items', function(req, res, next) {
 // ROUTES FOR NEW USER SIGN UP AND USER LOGIN
 // POST route saves a new user to the database and redirects them on success to questions.ejs
 router.post('/signup', function(req, res, next) {
-  var user = new User({ username: req.body.username });
+  var user = new User({
+    username: req.body.username
+  });
   User.register(user, req.body.password, function(error) {
     if (error) {
       res.send(error);

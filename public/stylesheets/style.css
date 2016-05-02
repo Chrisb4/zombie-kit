@@ -1,3 +1,62 @@
+
+body {
+margin-bottom: 100px;
+
+}
+
+#nav-title {
+  font-size: 2em;
+}
+#shopping-cart {
+  margin-right: 20px;
+  font-size: 4em;
+}
+nav ul {
+  display: inline-block:
+
+}
+nav li {
+  list-style: none;
+}
+ nav a {
+  color: black;
+}
+
+#welcome {
+  font-family: 'Bangers', cursive;
+  font-size: 1.5em;
+}
+
+
+#welcome-title {
+  font-size: 3.33em;
+}
+
 .container {
-  margin-top: 100px;
+  /*margin-top: 100px;*/
+
+}
+.weasel {
+  height: 1000px;
+  width: 700px;
+  background-image: url("../images/Weasel_Hoarder_zombie.png");
+}
+
+#footer {
+/*position: absolute-relative;*/
+/*bottom: 0px;*/
+/*display: inline;*/
+margin-bottom: 5px;
+margin-top: 20px;
+}
+#copyright {
+  padding-bottom: 30px;
+}
+#footer-links li {
+  display: inline;
+  padding-bottom: 10px;
+  padding-right: 30px;
+}
+.footer-icon {
+  font-size: 2em;
 }
