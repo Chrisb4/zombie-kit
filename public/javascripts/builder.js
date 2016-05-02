@@ -37,9 +37,10 @@ $( document ).ready(function() {
 
   // Version 2 of getting a question and 2 choices displayed with AJAX
   function getNextQuestionV2() {
-    // hidding next question button
+    // hidding next question button, add to cart button and the product
     $('.next-question-button').hide();
     $('.add-to-cart-button').hide();
+    $('#product-display').html('');
 
     var nextQuestion = $.ajax({
       url: '/questions/next',

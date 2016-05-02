@@ -64,7 +64,7 @@ router.post('/choices', function(req, res, next) {
   var response;
   var product = {
       title: 'Human Smell Deterrent Zombie',
-      asin: '123456',
+      ASIN: '123456',
       price: '19.99',
       image: 'images/Weasel_Hoarder_zombie.png'
   };
