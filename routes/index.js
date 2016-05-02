@@ -50,7 +50,7 @@ function isLoggedIn(req, res, next) {
 }
 
 // ROUTES
-// QUESTIONS AND ANSWERS ROUTES
+// QUESTIONS AND CHOICES ROUTES
 // GET questions/next route
 router.get('/questions/next', function(req, res, next) {
   res.json( { question: 'Do you have any pets you are willing to sacrifice?',
@@ -58,26 +58,28 @@ router.get('/questions/next', function(req, res, next) {
               choiceB: 'no!' } );
 });
 
-// POST answers route
-router.post('/answers', function(req, res, next) {
-  var clickedAnswer = req.body.answer;
-  var answer;
-  if (clickedAnswer === 'A') {
-    answer = 'Great, pet brains are tasty';
+// POST choices route
+router.post('/choices', function(req, res, next) {
+  var choiceClicked = req.body.choiceClicked;
+  var response;
+  if (choiceClicked === 'A') {
+    response = 'Great, pet brains are tasty';
   } else {
-    answer = 'no worries, kids will work too';
+    response = 'no worries, kids will work too';
   }
-  res.json( { answer: answer } );
+  res.json( { response: response } );
 });
 
 // AMAZON PRODUCTS ROUTES
 // GET product page
 router.get('/product', function(req, res, next) {
   // Amazon product search
-  client.itemSearch({
+  var productSearch = client.itemSearch({
     keywords: 'shovel',
     responseGroup: 'ItemAttributes,Offers,Images'
-  }, function(err, results, response){
+  });
+
+  productSearch.done(function(err, results, response) {
     console.log(results[0]);
     var product = {
       title: results[0].ItemAttributes[0].Title[0],
@@ -86,6 +88,10 @@ router.get('/product', function(req, res, next) {
       image: results[0].LargeImage[0].URL[0]
     };
     res.render('product', {title: 'Product | Zombie Kit', product: product});
+  });
+
+  productSearch.fail(function() {
+    console.log('product search failed');
   });
 });
 

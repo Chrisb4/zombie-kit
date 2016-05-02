@@ -5,15 +5,15 @@ $( document ).ready(function() {
   getNextQuestionV2();
 
 // EVENT LISTENERS
-  // Event listener for choice A, function to display answer, and request to hide buttons
+  // Event listener for choice A, function to display response, and request to hide buttons
   $('.choice-A-button').click(function(e) {
-    answerChosen('A');
+    choiceSelected('A');
     $('#choice-buttons').hide();
   });
 
-  // Event listener for choice B, function to display answer, and request to hide buttons
+  // Event listener for choice B, function to display response, and request to hide buttons
   $('.choice-B-button').click(function(e) {
-    answerChosen('B');
+    choiceSelected('B');
     $('#choice-buttons').hide();
   });
 
@@ -56,22 +56,22 @@ $( document ).ready(function() {
     });
   };
 
-  // AJAX answer function to determine A or B
-  function answerChosen(answerClicked) {
-    var answerDisplay = $.ajax({
-      url: '/answers',
+  // AJAX choice function to determine A or B
+  function choiceSelected(choiceClicked) {
+    var choiceDisplay = $.ajax({
+      url: '/choices',
       type: 'POST',
       dataType: 'json',
-      data: { answer: answerClicked }
+      data: { choiceClicked: choiceClicked }
     });
 
-    answerDisplay.done(function(data){
-      var answer = data.answer;
-      $('#builder-text').html('<p>' + answer + '</p>');
+    choiceDisplay.done(function(data){
+      var response = data.response;
+      $('#builder-text').html('<p>' + response + '</p>');
       $('.next-question-button').show();
     });
 
-    answerDisplay.fail(function(jqXHR, textStatus, errorThrown){
+    choiceDisplay.fail(function(jqXHR, textStatus, errorThrown){
       console.log(errorThrown);
     });
   }
