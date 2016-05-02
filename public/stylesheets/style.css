@@ -1,15 +1,4 @@
-/*body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
-}
 
-h1 {
-text-align: center;
-}
-
-a {
-  color: #00B7FF;
-}*/
 body {
 margin-bottom: 100px;
 
@@ -42,6 +31,7 @@ nav li {
 #welcome-title {
   font-size: 3.33em;
 }
+
 .container {
   /*margin-top: 100px;*/
 
