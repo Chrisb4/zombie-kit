@@ -21,7 +21,7 @@ router.get('/', function(req, res, next) {
 });
 
 // GET kit builder page
-router.get('/builder', isLoggedIn, function(req, res, next) {
+router.get('/builder', /*isLoggedIn,*/ function(req, res, next) {
   res.render('builder', { title: 'Builder | Zombie Kit' });
 });
 
@@ -53,7 +53,7 @@ function isLoggedIn(req, res, next) {
 }
 
 // QUESTIONS ARRAY
-var questionsArray = [
+var questions = [
   {question: 'How good are you with swords?',
   choiceA: 'Who owns a sword? 2016 bro!',
   choiceB: 'If pocket knives count, great!',
@@ -75,23 +75,27 @@ var questionsArray = [
 // QUESTIONS AND CHOICES ROUTES
 // GET questions/next route
 router.get('/questions/next', function(req, res, next) {
-  res.json({ question: questionsArray[0].question,
-              choiceA: questionsArray[0].choiceA,
-              choiceB:  questionsArray[0].choiceB});
+  var currentQuestion = parseInt(req.query.currentQuestion);
+  console.log(currentQuestion);
+  var question = questions[currentQuestion];
+  res.json({ question: question.question,
+              choiceA: question.choiceA,
+              choiceB:  question.choiceB});
 });
 
 // POST choices route. Choice selected and response route with Amazon product
 router.post('/choices', function(req, res, next) {
   var choiceClicked = req.body.choiceClicked;
+  var question = questions[0];
   var response;
   if (choiceClicked === 'A') {
-    response = questionsArray[0].responseA;
+    response = question.responseA;
   } else {
-    response = questionsArray[0].responseB;
+    response = question.responseB;
   }
 
   var productSearch = client.itemSearch({
-    keywords: questionsArray[0].productKeywordA,
+    keywords: question.productKeywordA,
     responseGroup: 'ItemAttributes,Offers,Images'
   });
 

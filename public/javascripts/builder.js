@@ -2,9 +2,10 @@ $( document ).ready(function() {
 
 // FUNCTION CALLS AND VARIABLES NEEDED AT PAGE LOAD
   // getNextQuestionV1();
-  getNextQuestion();
-  var currentProduct;
   var currentQuestion = 0;
+  var currentProduct;
+
+  getNextQuestion();
 
 // EVENT LISTENERS
   // Event listener for choice A, function to display response, and request to hide buttons
@@ -46,7 +47,8 @@ $( document ).ready(function() {
     var nextQuestion = $.ajax({
       url: '/questions/next',
       type: 'GET',
-      dataType: 'json'
+      dataType: 'json',
+      data: {currentQuestion: currentQuestion}
     });
 
     nextQuestion.done(function(data){
