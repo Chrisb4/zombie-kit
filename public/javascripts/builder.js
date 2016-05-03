@@ -22,7 +22,9 @@ $( document ).ready(function() {
 
   // Event listener for next question button
   $('.next-question-button').click(function(e) {
+    currentQuestion++;
     getNextQuestion();
+
   });
 
 // Event listener for adding product to cart button
@@ -73,7 +75,7 @@ $( document ).ready(function() {
       url: '/choices',
       type: 'POST',
       dataType: 'json',
-      data: { choiceClicked: choiceClicked }
+      data: { choiceClicked: choiceClicked, currentQuestion: currentQuestion }
     });
 
     choiceDisplay.done(function(data){

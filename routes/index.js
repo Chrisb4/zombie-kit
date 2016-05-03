@@ -86,7 +86,8 @@ router.get('/questions/next', function(req, res, next) {
 // POST choices route. Choice selected and response route with Amazon product
 router.post('/choices', function(req, res, next) {
   var choiceClicked = req.body.choiceClicked;
-  var question = questions[0];
+  var currentQuestion = req.body.currentQuestion;
+  var question = questions[currentQuestion];
   var response;
   if (choiceClicked === 'A') {
     response = question.responseA;
