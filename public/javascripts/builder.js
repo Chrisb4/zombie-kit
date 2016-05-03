@@ -38,6 +38,10 @@ $( document ).ready(function() {
     var question1 = "How attached are you to your brains?";
     $('#builder-text').html(question1);
   };*/
+  // function to redirect to shopping list when questions run out
+  function Redirect() {
+    window.location='/shopping_list';
+  };
 
   // Version 2 of getting a question and 2 choices displayed with AJAX
   function getNextQuestion() {
@@ -45,6 +49,7 @@ $( document ).ready(function() {
     $('.next-question-button').hide();
     $('.add-to-cart-button').hide();
     $('#product-display').html('');
+    $('#builder-text').html('');
 
     var nextQuestion = $.ajax({
       url: '/questions/next',
@@ -60,7 +65,8 @@ $( document ).ready(function() {
       var choiceB = data.choiceB;
 
       if (data.status) {
-        alert(data.status);
+        // alert(data.status);
+        Redirect();
       } else {
           $('#builder-text').html('<p>' + question + '</p>');
           $('.choice-A-button').text(choiceA);
