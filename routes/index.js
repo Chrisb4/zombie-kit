@@ -30,6 +30,7 @@ router.get('/shopping_list', function(req, res, next) {
   var cartItemsRequest = CartItem.find({});
 
   cartItemsRequest.then(function(cartItems) {
+    console.log(cartItems);
     res.render('shopping_list', { title: 'Shopping List | Zombie Kit', cartItems: cartItems});
   });
 
