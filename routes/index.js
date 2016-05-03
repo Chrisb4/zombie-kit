@@ -27,7 +27,14 @@ router.get('/builder', /*isLoggedIn,*/ function(req, res, next) {
 
 // GET shopping_list page. May want to add isLoggedIn function
 router.get('/shopping_list', function(req, res, next) {
-  res.render('shopping_list', { title: 'Shopping List | Zombie Kit'});
+  var cartItemsRequest = CartItem.find({});
+
+  cartItemsRequest.then(function(cartItems) {
+    console.log(cartItems);
+    res.render('shopping_list', { title: 'Shopping List | Zombie Kit', cartItems: cartItems});
+  });
+
+
 });
 
 // GET exit page. May want to add isLoggedIn function
