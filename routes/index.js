@@ -21,7 +21,7 @@ router.get('/', function(req, res, next) {
 });
 
 // GET kit builder page
-router.get('/builder', isLoggedIn, function(req, res, next) {
+router.get('/builder', /*isLoggedIn,*/ function(req, res, next) {
   res.render('builder', { title: 'Builder | Zombie Kit' });
 });
 
@@ -38,7 +38,7 @@ router.get('/exit', function(req, res, next) {
 // GET questions page. Deny access if not logged in
 // router.get('/questions', isLoggedIn, function(req, res, next) { (commented out during Dev)
 router.get('/questions', function(req, res, next) { //(delete for deployment)
-  var question = "How good are you with swords?";
+  var question = 'How good are you with swords?';
   res.render('questions', { title: 'Questions | Zombie Kit', question: question });
 });
 
@@ -52,27 +52,54 @@ function isLoggedIn(req, res, next) {
   }
 }
 
+// QUESTIONS ARRAY
+var questions = [
+  {question: 'How good are you with swords?',
+  choiceA: 'Who owns a sword? 2016 bro!',
+  choiceB: 'If pocket knives count, great!',
+  responseA:'you sound like a winner, here is a weapon just for you:',
+  responseB:'close enough, but this might help:',
+  productKeywordA: 'lightsaber',
+  productKeywordB: 'baseball bat'
+  },
+  {question: 'Do you have any pets you are willing to sacrifice?',
+  choiceA: 'I have a pet, but...',
+  choiceB: 'no!',
+  responseA:'Great, pet brains are tasty! You might still need this:',
+  responseB:'No worries, kids will work too! Just kidding, take one of these instead:',
+  productKeywordA: 'tuna can',
+  productKeywordB: 'sardines'}
+];
+
 // ROUTES
 // QUESTIONS AND CHOICES ROUTES
 // GET questions/next route
 router.get('/questions/next', function(req, res, next) {
-  res.json({ question: 'Do you have any pets you are willing to sacrifice?',
-              choiceA: 'I have a pet, but...',
-              choiceB: 'no!' });
+  var currentQuestion = parseInt(req.query.currentQuestion);
+  console.log(currentQuestion);
+  var question = questions[currentQuestion];
+  res.json({ question: question.question,
+              choiceA: question.choiceA,
+              choiceB:  question.choiceB});
 });
 
 // POST choices route. Choice selected and response route with Amazon product
 router.post('/choices', function(req, res, next) {
   var choiceClicked = req.body.choiceClicked;
+  var currentQuestion = req.body.currentQuestion;
+  var question = questions[currentQuestion];
   var response;
+
   if (choiceClicked === 'A') {
-    response = 'Great, pet brains are tasty';
+    response = question.responseA;
+    keyword = question.productKeywordA;
   } else {
-    response = 'no worries, kids will work too';
+    response = question.responseB;
+    keyword = question.productKeywordB;
   }
 
   var productSearch = client.itemSearch({
-    keywords: 'shovel',
+    keywords: keyword,
     responseGroup: 'ItemAttributes,Offers,Images'
   });
 

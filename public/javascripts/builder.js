@@ -2,8 +2,10 @@ $( document ).ready(function() {
 
 // FUNCTION CALLS AND VARIABLES NEEDED AT PAGE LOAD
   // getNextQuestionV1();
-  getNextQuestionV2();
+  var currentQuestion = 0;
   var currentProduct;
+
+  getNextQuestion();
 
 // EVENT LISTENERS
   // Event listener for choice A, function to display response, and request to hide buttons
@@ -20,7 +22,9 @@ $( document ).ready(function() {
 
   // Event listener for next question button
   $('.next-question-button').click(function(e) {
-    getNextQuestionV2();
+    currentQuestion++;
+    getNextQuestion();
+
   });
 
 // Event listener for adding product to cart button
@@ -36,7 +40,7 @@ $( document ).ready(function() {
   };*/
 
   // Version 2 of getting a question and 2 choices displayed with AJAX
-  function getNextQuestionV2() {
+  function getNextQuestion() {
     // hidding next question button, add to cart button and the product
     $('.next-question-button').hide();
     $('.add-to-cart-button').hide();
@@ -45,7 +49,8 @@ $( document ).ready(function() {
     var nextQuestion = $.ajax({
       url: '/questions/next',
       type: 'GET',
-      dataType: 'json'
+      dataType: 'json',
+      data: {currentQuestion: currentQuestion}
     });
 
     nextQuestion.done(function(data){
@@ -70,7 +75,7 @@ $( document ).ready(function() {
       url: '/choices',
       type: 'POST',
       dataType: 'json',
-      data: { choiceClicked: choiceClicked }
+      data: { choiceClicked: choiceClicked, currentQuestion: currentQuestion }
     });
 
     choiceDisplay.done(function(data){

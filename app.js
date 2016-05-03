@@ -35,7 +35,9 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
   secret: process.env.SESSION_KEY || 'foobar',
-  saveUninitialized: false
+  resave: true,
+  saveUninitialized: false,
+  cookie: {expires : new Date(Date.now() + 360000000)}
 }));
 app.use(passport.initialize());
 app.use(passport.session());
