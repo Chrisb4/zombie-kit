@@ -4,16 +4,15 @@ margin-bottom: 100px;
 background-image: url(../images/Once-upon-a-Zombie-image-once-upon-a-zombie-36574221-1000-845.jpg);
 
 }
+/* Navbar -- this affects the header and the footer    */
 .navbar {
    background-color: transparent;
    background:rgba(46,106,80,.75);
    border-color: #E7E7E7;
 }
 
-.navbar li { color: #000 }
+.navbar li {
 
-.intro {
-  margin-top: 100px;
 }
 
 #nav-title {
@@ -29,9 +28,16 @@ nav ul {
 }
 nav li {
   list-style: none;
+    color: #000
 }
  nav a {
   color: black;
+}
+/*  End Navbar--------------------------------------  */
+
+/* Text on Index page --------------------------------*/
+.intro {
+  margin-top: 100px;
 }
 
 #welcome {
@@ -46,12 +52,15 @@ nav li {
   font-size: 5em;
 
 }
+/* End Text on Index page --------------------------------*/
 
-.container {
-  /*margin-top: 100px;*/
+/* Sign up panel on Index page --------------------------------*/
 
-}
 
+
+/* End Sign up panel on Index page --------------------------------*/
+
+/* Footer -------------------------------- */
 #footer {
 /*position: absolute-relative;*/
 /*bottom: 0px;*/
@@ -70,3 +79,4 @@ margin-top: 20px;
 .footer-icon {
   font-size: 2em;
 }
+/*  End Footer ----------------------------- */
