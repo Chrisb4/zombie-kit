@@ -78,9 +78,14 @@ router.get('/questions/next', function(req, res, next) {
   var currentQuestion = parseInt(req.query.currentQuestion);
   console.log(currentQuestion);
   var question = questions[currentQuestion];
-  res.json({ question: question.question,
+
+  if (currentQuestion === questions.length) {
+    res.json({status: 'no more questions'});
+  } else {
+      res.json({ question: question.question,
               choiceA: question.choiceA,
               choiceB:  question.choiceB});
+    }
 });
 
 // POST choices route. Choice selected and response route with Amazon product
