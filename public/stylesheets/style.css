@@ -1,7 +1,19 @@
 
 body {
 margin-bottom: 100px;
+background-image: url(../images/Once-upon-a-Zombie-image-once-upon-a-zombie-36574221-1000-845.jpg);
 
+}
+.navbar {
+   background-color: transparent;
+   background:rgba(46,106,80,.75);
+   border-color: #E7E7E7;
+}
+
+.navbar li { color: #000 }
+
+.intro {
+  margin-top: 100px;
 }
 
 #nav-title {
@@ -23,13 +35,16 @@ nav li {
 }
 
 #welcome {
+  margin-top: 25px;
   font-family: 'Bangers', cursive;
   font-size: 1.5em;
+  color: rgba(219, 0, 0, 0.75);
 }
 
 
 #welcome-title {
-  font-size: 3.33em;
+  font-size: 5em;
+
 }
 
 .container {
