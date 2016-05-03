@@ -89,14 +89,17 @@ router.post('/choices', function(req, res, next) {
   var currentQuestion = req.body.currentQuestion;
   var question = questions[currentQuestion];
   var response;
+
   if (choiceClicked === 'A') {
     response = question.responseA;
+    keyword = question.productKeywordA;
   } else {
     response = question.responseB;
+    keyword = question.productKeywordB;
   }
 
   var productSearch = client.itemSearch({
-    keywords: question.productKeywordA,
+    keywords: keyword,
     responseGroup: 'ItemAttributes,Offers,Images'
   });
 
