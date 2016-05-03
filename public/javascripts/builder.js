@@ -2,8 +2,9 @@ $( document ).ready(function() {
 
 // FUNCTION CALLS AND VARIABLES NEEDED AT PAGE LOAD
   // getNextQuestionV1();
-  getNextQuestionV2();
+  getNextQuestion();
   var currentProduct;
+  var currentQuestion = 0;
 
 // EVENT LISTENERS
   // Event listener for choice A, function to display response, and request to hide buttons
@@ -20,7 +21,7 @@ $( document ).ready(function() {
 
   // Event listener for next question button
   $('.next-question-button').click(function(e) {
-    getNextQuestionV2();
+    getNextQuestion();
   });
 
 // Event listener for adding product to cart button
@@ -36,7 +37,7 @@ $( document ).ready(function() {
   };*/
 
   // Version 2 of getting a question and 2 choices displayed with AJAX
-  function getNextQuestionV2() {
+  function getNextQuestion() {
     // hidding next question button, add to cart button and the product
     $('.next-question-button').hide();
     $('.add-to-cart-button').hide();

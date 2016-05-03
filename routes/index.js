@@ -38,7 +38,7 @@ router.get('/exit', function(req, res, next) {
 // GET questions page. Deny access if not logged in
 // router.get('/questions', isLoggedIn, function(req, res, next) { (commented out during Dev)
 router.get('/questions', function(req, res, next) { //(delete for deployment)
-  var question = "How good are you with swords?";
+  var question = 'How good are you with swords?';
   res.render('questions', { title: 'Questions | Zombie Kit', question: question });
 });
 
@@ -52,13 +52,32 @@ function isLoggedIn(req, res, next) {
   }
 }
 
+// QUESTIONS ARRAY
+var questionsArray = [
+  {question: 'How good are you with swords?',
+  choiceA: 'Who owns a sword? 2016 bro!',
+  choiceB: 'If pocket knives count, great!',
+  responseA:'you sound like a winner, here is a weapon just for you:',
+  responseB:'close enough, but this might help:',
+  productKeywordA: 'lightsaber',
+  productKeywordB: 'baseball bat'
+  },
+  {question: 'Do you have any pets you are willing to sacrifice?',
+  choiceA: 'I have a pet, but...',
+  choiceB: 'no!',
+  responseA:'Great, pet brains are tasty! You might still need this:',
+  responseB:'No worries, kids will work too! Just kidding, take one of these instead:',
+  productKeywordA: 'tuna can',
+  productKeywordB: 'sardines'}
+];
+
 // ROUTES
 // QUESTIONS AND CHOICES ROUTES
 // GET questions/next route
 router.get('/questions/next', function(req, res, next) {
-  res.json({ question: 'Do you have any pets you are willing to sacrifice?',
-              choiceA: 'I have a pet, but...',
-              choiceB: 'no!' });
+  res.json({ question: questionsArray[0].question,
+              choiceA: questionsArray[0].choiceA,
+              choiceB:  questionsArray[0].choiceB});
 });
 
 // POST choices route. Choice selected and response route with Amazon product
@@ -66,13 +85,13 @@ router.post('/choices', function(req, res, next) {
   var choiceClicked = req.body.choiceClicked;
   var response;
   if (choiceClicked === 'A') {
-    response = 'Great, pet brains are tasty';
+    response = questionsArray[0].responseA;
   } else {
-    response = 'no worries, kids will work too';
+    response = questionsArray[0].responseB;
   }
 
   var productSearch = client.itemSearch({
-    keywords: 'shovel',
+    keywords: questionsArray[0].productKeywordA,
     responseGroup: 'ItemAttributes,Offers,Images'
   });
 
