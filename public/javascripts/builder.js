@@ -58,10 +58,15 @@ $( document ).ready(function() {
       var question = data.question;
       var choiceA = data.choiceA;
       var choiceB = data.choiceB;
-      $('#builder-text').html('<p>' + question + '</p>');
-      $('.choice-A-button').text(choiceA);
-      $('.choice-B-button').text(choiceB);
-      $('#choice-buttons').show();
+
+      if (data.status) {
+        alert(data.status);
+      } else {
+          $('#builder-text').html('<p>' + question + '</p>');
+          $('.choice-A-button').text(choiceA);
+          $('.choice-B-button').text(choiceB);
+          $('#choice-buttons').show();
+        }
     });
 
     nextQuestion.fail(function(jqXHR, textStatus, errorThrown){
