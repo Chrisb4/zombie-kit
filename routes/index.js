@@ -17,17 +17,17 @@ var client = amazon.createClient({
 // VIEWS
 // GET home page
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Zombie Kit' });
+  res.render('index', { title: 'Zombie Kit', view: 'default' });
 });
 
 // GET kit builder page
 router.get('/builder', /*isLoggedIn,*/ function(req, res, next) {
-  res.render('builder', { title: 'Builder | Zombie Kit' });
+  res.render('builder', { title: 'Builder | Zombie Kit', view: 'builder' });
 });
 
 // GET shopping_list page. May want to add isLoggedIn function
 router.get('/shopping_list', function(req, res, next) {
-  res.render('shopping_list', { title: 'Shopping List | Zombie Kit' });
+  res.render('shopping_list', { title: 'Shopping List | Zombie Kit'});
 });
 
 // GET exit page. May want to add isLoggedIn function

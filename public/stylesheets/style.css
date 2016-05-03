@@ -56,7 +56,25 @@ nav li {
 
 /* Sign up panel on Index page --------------------------------*/
 
+.panel {
+  background-color: rgba(46,106,80,.50);
+}
+.panel > .panel-heading {
+    background-image: none;
+    background-color: rgba(46,106,80,.50);
+    color: rgba(219, 0, 0, 0.75);
 
+}
+input[type="text"], textarea {
+
+  background-color : rgba(219, 0, 0, 0.75);
+
+}
+input[type="password"], textarea {
+
+  background-color : rgba(219, 0, 0, 0.75);
+
+}
 
 /* End Sign up panel on Index page --------------------------------*/
 
