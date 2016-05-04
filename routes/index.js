@@ -26,32 +26,30 @@ router.get('/builder', /*isLoggedIn,*/ function(req, res, next) {
   res.render('builder', { title: 'Builder | Zombie Kit', view: 'builder' });
 });
 
-// GET shopping_list page. May want to add isLoggedIn function
+// GET shopping_list page. Includes cartItem request to mLab
+// May want to add isLoggedIn function
 router.get('/shopping_list', function(req, res, next) {
   var cartItemsRequest = CartItem.find({});
 
   cartItemsRequest.then(function(cartItems) {
-    console.log(cartItems);
     res.render('shopping_list', { title: 'Shopping List | Zombie Kit', cartItems: cartItems});
   });
-
-
 });
 
+// DELETE FOR DEPLOYMENT
 // GET exit page. May want to add isLoggedIn function
 router.get('/exit', function(req, res, next) {
   res.render('exit');
 });
 
+// DELETE FOR DEPLOYMENT
 // GET questions page. Deny access if not logged in
-// router.get('/questions', isLoggedIn, function(req, res, next) { (commented out during Dev)
-router.get('/questions', function(req, res, next) { //(delete for deployment)
+router.get('/questions', function(req, res, next) {
   var question = 'How good are you with swords?';
   res.render('questions', { title: 'Questions | Zombie Kit', question: question });
 });
 
 // MIDDLEWARE
-// middleware for Logging in
 function isLoggedIn(req, res, next) {
   if (req.isAuthenticated()) {
     next();
@@ -60,35 +58,13 @@ function isLoggedIn(req, res, next) {
   }
 }
 
-// QUESTIONS ARRAY
-var questions = [
-  {question: 'How good are you with swords?',
-  choiceA: 'Who owns a sword? 2016 bro!',
-  choiceB: 'If pocket knives count, great!',
-  responseA:'you sound like a winner, here is a weapon just for you:',
-  responseB:'close enough, but this might help:',
-  productKeywordA: 'lightsaber',
-  productKeywordB: 'baseball bat'
-  },
-  {question: 'Do you have any pets you are willing to sacrifice?',
-  choiceA: 'I have a pet, but...',
-  choiceB: 'no!',
-  responseA:'Great, pet brains are tasty! You might still need this:',
-  responseB:'No worries, kids will work too! Just kidding, take one of these instead:',
-  productKeywordA: 'tuna can',
-  productKeywordB: 'sardines'}
-];
-
 // ROUTES
-// QUESTIONS AND CHOICES ROUTES
-// GET questions/next route
+// GET questions/next route. Includes questions request to mLab
 router.get('/questions/next', function(req, res, next) {
   var currentQuestion = parseInt(req.query.currentQuestion);
-  // console.log(currentQuestion);
   var questionsRequest = Question.find({});
 
   questionsRequest.then(function(questions) {
-    // console.log(questions);
   var question = questions[currentQuestion];
 
     if (currentQuestion === questions.length) {
@@ -103,16 +79,15 @@ router.get('/questions/next', function(req, res, next) {
   });
 });
 
-
-// POST choices route. Choice selected and response route with Amazon product
+/* POST choices route. Creates a response and renders corresponding Amazon product.
+Hits Amazon's API. Includes cartItem request to mLab */
 router.post('/choices', function(req, res, next) {
+  var response;
   var choiceClicked = req.body.choiceClicked;
   var currentQuestion = req.body.currentQuestion;
-  var response;
   var questionsRequest = Question.find({});
 
   questionsRequest.then(function(questions) {
-    // console.log(questions);
     var question = questions[currentQuestion];
 
     if (choiceClicked === 'A') {
@@ -142,10 +117,10 @@ router.post('/choices', function(req, res, next) {
     productSearch.catch(function() {
       console.log('product search failed');
     });
-
   });
 });
 
+// DELETE ON DEPLOYMENT
 // AMAZON TEST PRODUCTS ROUTE
 // GET product page
 router.get('/product', function(req, res, next) {
@@ -174,7 +149,6 @@ router.get('/product', function(req, res, next) {
 // POST cart items route
 router.post('/cart-items', function(req, res, next) {
   console.log(req);
-  // res.json({ status: 'successful' });
   var cartItem = new CartItem({ userId: req.user._id,
                                 title: req.body.product.title,
                                 ASIN: req.body.product.ASIN,
