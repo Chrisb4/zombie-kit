@@ -3,12 +3,16 @@ body.builder-view {
   width: 100%;
   height: 600px;
   color: white;
-  /*font-weight: bold;*/
-  /*font-size: 18px;*/
-  /*background-color: grey;*/
- /* background-image: url(../images/dino_zombie.png), url(../images/caution_wallpaper.jpg);
+  /*font-weight: bold;
+  font-size: 18px;
+  background-color: grey;
+  background-image: url(../images/dino_zombie.png), url(../images/caution_wallpaper.jpg);
   background-size: 20%, 100%;
   background-repeat: no-repeat, no-repeat;
-  background-position: bottom left, right;
+  background-position: bottom left, right;*/
 }
-*/
+
+body.builder-view button {
+  color: black;
+}
+
