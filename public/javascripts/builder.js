@@ -1,55 +1,46 @@
 $( document ).ready(function() {
 
 // FUNCTION CALLS AND VARIABLES NEEDED AT PAGE LOAD
-  // getNextQuestionV1();
   var currentQuestion = 0;
   var currentProduct;
-
   getNextQuestion();
 
 // EVENT LISTENERS
-  // Event listener for choice A, function to display response, and request to hide buttons
+  // Choice A and B; function to display response, and request to hide buttons
   $('.choice-A-button').click(function(e) {
     choiceSelected('A');
     $('#choice-buttons').hide();
   });
 
-  // Event listener for choice B, function to display response, and request to hide buttons
   $('.choice-B-button').click(function(e) {
     choiceSelected('B');
     $('#choice-buttons').hide();
   });
 
-  // Event listener for next question button
+  // Next question button; adds 1 to index of questions and gets the next one
   $('.next-question-button').click(function(e) {
     currentQuestion++;
     getNextQuestion();
-
   });
 
-// Event listener for adding product to cart button
+// Product to cart button and function; Gets parameter from choiceSelected function
   $('.add-to-cart-button').click(function(e) {
     addProductToCart(currentProduct);
   });
 
 // FUNCTIONS
-  // Version 1 of getting a question displayed
-/*  function getNextQuestionV1() {
-    var question1 = "How attached are you to your brains?";
-    $('#builder-text').html(question1);
-  };*/
-  // function to redirect to shopping list when questions run out
+  // Redirects to shopping list when questions run out
   function Redirect() {
-    window.location='/shopping_list';
+    window.location = '/shopping_list';
   };
 
-  // Version 2 of getting a question and 2 choices displayed with AJAX
+  // Gets next question and displays the 2 choices. sends currentQuestion to route
   function getNextQuestion() {
-    // hidding next question button, add to cart button and the product
     $('.next-question-button').hide();
     $('.add-to-cart-button').hide();
     $('#product-display').html('');
     $('#builder-text').html('');
+    $('.loader').show();
 
     var nextQuestion = $.ajax({
       url: '/questions/next',
@@ -59,13 +50,12 @@ $( document ).ready(function() {
     });
 
     nextQuestion.done(function(data){
-      console.log(data);
+      $('.loader').hide();
       var question = data.question;
       var choiceA = data.choiceA;
       var choiceB = data.choiceB;
 
       if (data.status) {
-        // alert(data.status);
         Redirect();
       } else {
           $('#builder-text').html('<p>' + question + '</p>');
@@ -80,7 +70,7 @@ $( document ).ready(function() {
     });
   };
 
-  // AJAX choice function to determine A or B
+  // Choice function to determine A or B and display corresponding info
   function choiceSelected(choiceClicked) {
     var choiceDisplay = $.ajax({
       url: '/choices',
@@ -90,6 +80,7 @@ $( document ).ready(function() {
     });
 
     choiceDisplay.done(function(data){
+      $('.loader').hide();
       var response = data.response;
       // setting product selected to current product global variable
       currentProduct = data.product;
@@ -112,7 +103,7 @@ $( document ).ready(function() {
     });
   }
 
-  // Adding product to cart with AJAX call
+  // Adding product to cart
   function addProductToCart(currentProduct) {
     $('.add-to-cart-button').hide();
 
@@ -125,6 +116,7 @@ $( document ).ready(function() {
     });
 
     addToCart.done(function(data){
+      $('.loader').hide();
       console.log(data);
     });
 
