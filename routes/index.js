@@ -132,7 +132,7 @@ router.post('/cart-items', function(req, res, next) {
     } else {
       res.json(cartItem);
     }
-  })
+  });
 });
 
 // ROUTES FOR NEW USER SIGN UP AND USER LOGIN
@@ -153,7 +153,7 @@ router.post('/signup', function(req, res, next) {
         }
       });
     }
-  })
+  });
 });
 
 router.post('/login', passport.authenticate('local'), function(req, res, next) {
