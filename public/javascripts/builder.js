@@ -42,7 +42,7 @@ $( document ).ready(function() {
     $('.add-to-cart-button').hide();
     $('#product-display').html('');
     $('#builder-text').html('');
-    $('.loader').show();
+    // $('.loader').show();
 
     var nextQuestion = $.ajax({
       url: '/questions/next',
@@ -120,7 +120,7 @@ $( document ).ready(function() {
   // Adding product to cart
   function addProductToCart(currentProduct) {
     $('.add-to-cart-button').hide();
-    $('.loader').show();
+    // $('.loader').show();
 
     var addToCart = $.ajax({
       url: '/cart-items',

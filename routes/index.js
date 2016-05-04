@@ -36,19 +36,6 @@ router.get('/shopping_list', function(req, res, next) {
   });
 });
 
-// DELETE FOR DEPLOYMENT
-// GET exit page. May want to add isLoggedIn function
-router.get('/exit', function(req, res, next) {
-  res.render('exit');
-});
-
-// DELETE FOR DEPLOYMENT
-// GET questions page. Deny access if not logged in
-router.get('/questions', function(req, res, next) {
-  var question = 'How good are you with swords?';
-  res.render('questions', { title: 'Questions | Zombie Kit', question: question });
-});
-
 // MIDDLEWARE
 function isLoggedIn(req, res, next) {
   if (req.isAuthenticated()) {
