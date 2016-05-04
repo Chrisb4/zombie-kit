@@ -1,4 +1,18 @@
-																							Technologies
+																						User Story
+
+I see an intro page and create my username or login with a previous username.
+I see a question and answer a question.
+I receive two different suggestions for an Amazon purchase.
+I choose to add items to my cart or not to add the items.
+I see a new question.
+I continue along the same process and review my cart.
+I am redirected to Amazon to review my cart again and pay for my items.
+
+																						Wireframe
+
+![alt tag](https://cloud.githubusercontent.com/assets/17955771/15030077/08f208b0-1216-11e6-8b90-c7c8f3cb596c.png)
+
+																						Technologies
 
 	JavaScript- JavaScript one of the world’s most popular and powerful programming languages https://www.javascript.com/
 
@@ -44,13 +58,3 @@
 	https://developer.mozilla.org/en-US/docs/Web/CSS
 
 	JSON- (JavaScript Object Notation) is a lightweight data-interchange format.a text format that is completely language independent but uses conventions that are familiar to programmers of the C-family of languages, including C, C++, C#, Java, JavaScript, Perl, Python, and many others. These properties make JSON an ideal data-interchange language.http://www.json.org/
-
-                                              User Story
-
-I see an intro page and create my username or login with a previous username.
-I see a question and answer a question.
-I receive two different suggestions for an Amazon purchase.
-I choose to add items to my cart or not to add the items.
-I see a new question.
-I continue along the same process and review my cart.
-I am redirected to Amazon to review my cart again and pay for my items.
