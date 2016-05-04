@@ -13,5 +13,7 @@ body.builder-view button {
 }
 
 #builder-text {
+  font-family: 'Bangers', cursive;
+  font-size: 3em;
   color: white;
 }
