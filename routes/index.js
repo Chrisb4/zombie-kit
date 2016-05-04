@@ -5,6 +5,7 @@ var passport = require('passport');
 // Models
 var User = require('../models/user');
 var CartItem = require('../models/cartItem');
+var Question = require('../models/question');
 
 // Amazon client setup
 var amazon = require('amazon-product-api');
