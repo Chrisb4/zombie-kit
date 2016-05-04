@@ -1,0 +1,58 @@
+// QUESTIONS ARRAY
+var questions = [
+  {question: 'How good are you with swords?',
+  choiceA: 'Who owns a sword? 2016 bro!',
+  choiceB: 'If pocket knives count, great!',
+  responseA:'you sound like a winner, here is a weapon just for you:',
+  responseB:'close enough, but this might help:',
+  productKeywordA: 'lightsaber',
+  productKeywordB: 'baseball bat'
+  },
+  {question: 'Do you have any pets you are willing to sacrifice?',
+  choiceA: 'I have a pet, but...',
+  choiceB: 'no!',
+  responseA:'Great, pet brains are tasty! You might still need this:',
+  responseB:'No worries, kids will work too! Just kidding, take one of these instead:',
+  productKeywordA: 'tuna can',
+  productKeywordB: 'sardines'
+  },
+  {question: 'How attached are you to your brain?',
+  choiceA: 'I have never met it, but I rather keep it',
+  choiceB: 'Not sure how much I use it honestly...',
+  responseA:'figured! You will need this then:',
+  responseB:'you will be sacrifice...I mean a fast runner then...use this:',
+  productKeywordA: 'helmet',
+  productKeywordB: 'hat'
+  },
+  {question: 'What is your preferred form of transportation?',
+  choiceA: 'car',
+  choiceB: 'I like to walk',
+  responseA:'good luck finding working gas stations! use this:',
+  responseB:'trust me, you will be mostly running...get a good pair of these:',
+  productKeywordA: 'gas can',
+  productKeywordB: 'running shoes'
+  },
+  {question: 'What is your favorite ice cream flavor?',
+  choiceA: 'vanilla',
+  choiceB: 'cookies and cream',
+  responseA:'trick question, you will never have something cold ever again, eat this instead:',
+  responseB:'trick question, nothing cold in the apocalypse, this is close enough though:',
+  productKeywordA: 'twinkies',
+  productKeywordB: 'oreos'
+  },
+  {question: 'Were you ever a boyscout/girlscout?',
+  choiceA: 'yes! here are all my badges!',
+  choiceB: 'mmmm I bought their cookies, does that count?',
+  responseA:'great! here is a box for them since you will not be taking them with you:',
+  responseB:'you may want to lay off the cookie box and pack a few of these:',
+  productKeywordA: 'box',
+  productKeywordB: 'lighter'
+  },
+  {question: 'last question...',
+  choiceA: '',
+  choiceB: '',
+  responseA:'',
+  responseB:'',
+  productKeywordA: '',
+  productKeywordB: ''}
+];

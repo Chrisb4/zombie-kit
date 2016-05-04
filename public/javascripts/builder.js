@@ -33,11 +33,6 @@ $( document ).ready(function() {
   });
 
 // FUNCTIONS
-  // Version 1 of getting a question displayed
-/*  function getNextQuestionV1() {
-    var question1 = "How attached are you to your brains?";
-    $('#builder-text').html(question1);
-  };*/
   // function to redirect to shopping list when questions run out
   function Redirect() {
     window.location='/shopping_list';
