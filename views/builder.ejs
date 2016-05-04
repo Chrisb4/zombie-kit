@@ -2,20 +2,32 @@
 
 <script type="text/javascript" src="./javascripts/builder.js"></script>
 
-<div id="builder-text"></div>
-<div id="product-display"></div>
+<div class="container-fluid">
+  <div class="row" id="display">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+      <div id="builder-text"></div>
+      <div id="product-display"></div>
 
-<div id="choice-buttons">
-  <button class="choice-A-button"></button>
-  <button class="choice-B-button"></button>
+      <div id="choice-buttons">
+        <button class="choice-A-button"></button>
+        <button class="choice-B-button"></button>
+      </div>
+
+      <button class="next-question-button">NEXT QUESTION</button>
+
+      <button class="add-to-cart-button">Add product to cart</button>
+
+      <div class="loader">
+        <img src="./images/pacman.gif" style="width:30px; text-align:center;">
+      </div>
+    </div>
+    <div class="col-md-3"></div>
+  </div>
 </div>
 
-<button class="next-question-button">NEXT QUESTION</button>
 
-<button class="add-to-cart-button">Add product to cart</button>
 
-<div class="loader">
-  <img src="./images/pacman.gif" style="width:30px; text-align:center;">
-</div>
+
 
 <% include ./partials/footer %>
