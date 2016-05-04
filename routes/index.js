@@ -70,11 +70,9 @@ router.get('/questions/next', function(req, res, next) {
     if (currentQuestion === questions.length) {
       res.json({status: 'no more questions'});
     } else {
-      setTimeout(function(){
         res.json({ question: question.question,
                   choiceA: question.choiceA,
                   choiceB:  question.choiceB});
-      }, 2000);
     }
   });
 });
