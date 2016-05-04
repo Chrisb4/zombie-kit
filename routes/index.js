@@ -84,51 +84,63 @@ var questions = [
 // GET questions/next route
 router.get('/questions/next', function(req, res, next) {
   var currentQuestion = parseInt(req.query.currentQuestion);
-  console.log(currentQuestion);
+  // console.log(currentQuestion);
+  var questionsRequest = Question.find({});
+
+  questionsRequest.then(function(questions) {
+    // console.log(questions);
   var question = questions[currentQuestion];
 
-  if (currentQuestion === questions.length) {
-    res.json({status: 'no more questions'});
-  } else {
+    if (currentQuestion === questions.length) {
+      res.json({status: 'no more questions'});
+    } else {
       res.json({ question: question.question,
-              choiceA: question.choiceA,
-              choiceB:  question.choiceB});
+                choiceA: question.choiceA,
+                choiceB:  question.choiceB});
     }
+  });
 });
+
 
 // POST choices route. Choice selected and response route with Amazon product
 router.post('/choices', function(req, res, next) {
   var choiceClicked = req.body.choiceClicked;
   var currentQuestion = req.body.currentQuestion;
-  var question = questions[currentQuestion];
   var response;
+  var questionsRequest = Question.find({});
 
-  if (choiceClicked === 'A') {
-    response = question.responseA;
-    keyword = question.productKeywordA;
-  } else {
-    response = question.responseB;
-    keyword = question.productKeywordB;
-  }
+  questionsRequest.then(function(questions) {
+    // console.log(questions);
+    var question = questions[currentQuestion];
 
-  var productSearch = client.itemSearch({
-    keywords: keyword,
-    responseGroup: 'ItemAttributes,Offers,Images'
-  });
+    if (choiceClicked === 'A') {
+      response = question.responseA;
+      keyword = question.productKeywordA;
+    } else {
+      response = question.responseB;
+      keyword = question.productKeywordB;
+    }
 
-  productSearch.then(function(results) {
-    console.log(results[0]);
-    var product = {
-      title: results[0].ItemAttributes[0].Title[0],
-      ASIN: results[0].ASIN[0],
-      price: results[0].OfferSummary[0].LowestNewPrice[0].FormattedPrice[0],
-      image: results[0].LargeImage[0].URL[0]
-    };
-    res.json({ response: response, product: product });
-  });
+    var productSearch = client.itemSearch({
+      keywords: keyword,
+      responseGroup: 'ItemAttributes,Offers,Images'
+    });
 
-  productSearch.catch(function() {
-    console.log('product search failed');
+    productSearch.then(function(results) {
+      console.log(results[0]);
+      var product = {
+        title: results[0].ItemAttributes[0].Title[0],
+        ASIN: results[0].ASIN[0],
+        price: results[0].OfferSummary[0].LowestNewPrice[0].FormattedPrice[0],
+        image: results[0].LargeImage[0].URL[0]
+      };
+      res.json({ response: response, product: product });
+    });
+
+    productSearch.catch(function() {
+      console.log('product search failed');
+    });
+
   });
 });
 
