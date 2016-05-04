@@ -19,6 +19,7 @@ $( document ).ready(function() {
 
   // Next question button; adds 1 to index of questions and gets the next one
   $('.next-question-button').click(function(e) {
+    $('#product-display').hide();
     currentQuestion++;
     getNextQuestion();
   });
@@ -94,6 +95,8 @@ $( document ).ready(function() {
             '<img src="' + currentProduct.image + '" width=200px>' +
           '</li>' +
         '</ul>');
+      $('#product-display').css({border: '5px solid black', 'border-radius': '10px', background: 'rgba(46,106,80,.8)'});
+      $('#product-display').show();
       $('.add-to-cart-button').show();
       $('.next-question-button').show();
     });
