@@ -1,18 +1,8 @@
 body.builder-view {
-  margin-top: 100px;
-  width: 100%;
-  height: 600px;
-  color: white;
-  /*font-weight: bold;
-  font-size: 18px;
-  background-color: grey;
-  background-image: url(../images/dino_zombie.png), url(../images/caution_wallpaper.jpg);
-  background-size: 20%, 100%;
-  background-repeat: no-repeat, no-repeat;
-  background-position: bottom left, right;*/
+margin-bottom: 100px;
+background-image: url(../images/Once-upon-a-Zombie-image-once-upon-a-zombie-36574221-1000-845.jpg);
 }
 
 body.builder-view button {
   color: black;
 }
-
