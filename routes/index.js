@@ -70,11 +70,9 @@ router.get('/questions/next', function(req, res, next) {
     if (currentQuestion === questions.length) {
       res.json({status: 'no more questions'});
     } else {
-      setTimeout(function(){
         res.json({ question: question.question,
                   choiceA: question.choiceA,
                   choiceB:  question.choiceB});
-      }, 2000);
     }
   });
 });
@@ -160,7 +158,7 @@ router.post('/cart-items', function(req, res, next) {
     } else {
       res.json(cartItem);
     }
-  })
+  });
 });
 
 // ROUTES FOR NEW USER SIGN UP AND USER LOGIN
@@ -181,7 +179,7 @@ router.post('/signup', function(req, res, next) {
         }
       });
     }
-  })
+  });
 });
 
 router.post('/login', passport.authenticate('local'), function(req, res, next) {
