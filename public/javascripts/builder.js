@@ -88,14 +88,17 @@ $( document ).ready(function() {
       $('#builder-text').html('<p>' + response + '</p>');
       $('#product-display').html(
         '<ul>' +
+          '<li>' +
+            '<img src="' + currentProduct.image + '" width=200px id="pic">' +
+          '</li>' +
           '<li>' + currentProduct.title + '</li>' +
           '<li>' + currentProduct.ASIN + '</li>' +
           '<li>' + currentProduct.price + '</li>' +
-          '<li>' +
-            '<img src="' + currentProduct.image + '" width=200px>' +
-          '</li>' +
+
         '</ul>');
-      $('#product-display').css({border: '5px solid black', 'border-radius': '10px', background: 'rgba(46,106,80,.8)', 'color': '#fff'});
+      $('#product-display').css({border: '5px solid rgba(209, 214, 231, 0.7)', 'border-radius': '10px', background: 'rgba(46,106,80,.8)', 'color': '#fff'});
+      $('ul').css({'list-style': 'none'});
+      $('#pic').css({border: '5px solid #fff', 'border-radius': '10px'});
       $('#product-display').show();
       $('.add-to-cart-button').show();
       $('.next-question-button').show();

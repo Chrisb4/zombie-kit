@@ -16,6 +16,7 @@
 
 #nav-title {
   font-size: 2em;
+
 }
 #shopping-cart {
   margin-right: 20px;
@@ -44,6 +45,7 @@ margin-top: 20px;
 }
 #copyright {
   padding-bottom: 30px;
+  margin-left: 250px;
 }
 #footer-links li {
   display: inline;
