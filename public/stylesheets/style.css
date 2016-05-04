@@ -1,22 +1,22 @@
 
-body {
-margin-bottom: 100px;
-background-image: url(../images/Once-upon-a-Zombie-image-once-upon-a-zombie-36574221-1000-845.jpg);
 
-}
 /* Navbar -- this affects the header and the footer    */
 .navbar {
    background-color: transparent;
-   background:rgba(46,106,80,.75);
-   border-color: #E7E7E7;
+   background:rgba(46,106,80,.25);
+   border-color: #D1D6E7;
+   color: rgba(209, 214, 231, 0.7);
 }
 
-.navbar li {
-
+.btn {
+  background-color: rgba(135, 202, 172, 1);
+  color: #ffffff;
 }
+
 
 #nav-title {
   font-size: 2em;
+
 }
 #shopping-cart {
   margin-right: 20px;
@@ -31,52 +31,9 @@ nav li {
     color: #000
 }
  nav a {
-  color: black;
+  color: rgba(209, 214, 231, 0.7);
 }
 /*  End Navbar--------------------------------------  */
-
-/* Text on Index page --------------------------------*/
-.intro {
-  margin-top: 100px;
-}
-
-#welcome {
-  margin-top: 25px;
-  font-family: 'Bangers', cursive;
-  font-size: 1.5em;
-  color: rgba(219, 0, 0, 0.75);
-}
-
-
-#welcome-title {
-  font-size: 5em;
-
-}
-/* End Text on Index page --------------------------------*/
-
-/* Sign up panel on Index page --------------------------------*/
-
-.panel {
-  background-color: rgba(46,106,80,.50);
-}
-.panel > .panel-heading {
-    background-image: none;
-    background-color: rgba(46,106,80,.50);
-    color: rgba(219, 0, 0, 0.75);
-
-}
-input[type="text"], textarea {
-
-  background-color : rgba(219, 0, 0, 0.75);
-
-}
-input[type="password"], textarea {
-
-  background-color : rgba(219, 0, 0, 0.75);
-
-}
-
-/* End Sign up panel on Index page --------------------------------*/
 
 /* Footer -------------------------------- */
 #footer {
@@ -88,6 +45,7 @@ margin-top: 20px;
 }
 #copyright {
   padding-bottom: 30px;
+  margin-left: 250px;
 }
 #footer-links li {
   display: inline;
@@ -98,3 +56,50 @@ margin-top: 20px;
   font-size: 2em;
 }
 /*  End Footer ----------------------------- */
+/*body background */
+body.index-view {
+margin-bottom: 100px;
+background-image: url(../images/Once-upon-a-Zombie-image-once-upon-a-zombie-36574221-1000-845.jpg);
+}
+
+/* Text on Index page --------------------------------*/
+.intro {
+  margin-top: 240px;
+}
+
+#welcome-title {
+  margin-top: 80px;
+  margin-left: 50px;
+  font-family: 'Bangers', cursive;
+  color: rgba(219, 0, 0, 0.75);
+  font-size: 7.5em;
+
+}
+/* End Text on Index page --------------------------------*/
+
+/* Sign up panel on Index page --------------------------------*/
+
+.panel {
+  background-color: rgba(46,106,80,.50);
+  color: rgba(209, 214, 231, 0.7);
+  font-weight: bold;
+
+}
+.panel > .panel-heading {
+    background-image: none;
+    background-color: rgba(46,106,80,.50);
+    color: rgba(219, 0, 0, 1);
+
+}
+input[type="text"], textarea {
+  color: white;
+  background-color : rgba(46, 106, 80, 0.5);
+
+}
+input[type="password"], textarea {
+  color: white;
+  background-color : rgba(46, 106, 80, 0.5);
+
+}
+
+/* End Sign up panel on Index page --------------------------------*/

@@ -18,7 +18,7 @@ var client = amazon.createClient({
 // VIEWS
 // GET home page
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Zombie Kit', view: 'default' });
+  res.render('index', { title: 'Zombie Kit', view: 'index' });
 });
 
 // GET kit builder page
@@ -32,7 +32,7 @@ router.get('/shopping_list', function(req, res, next) {
   var cartItemsRequest = CartItem.find({});
 
   cartItemsRequest.then(function(cartItems) {
-    res.render('shopping_list', { title: 'Shopping List | Zombie Kit', cartItems: cartItems});
+    res.render('shopping_list', { title: 'Shopping List | Zombie Kit', cartItems: cartItems, view: 'shopping_list'});
   });
 });
 
@@ -164,7 +164,7 @@ router.post('/cart-items', function(req, res, next) {
 });
 
 // ROUTES FOR NEW USER SIGN UP AND USER LOGIN
-// POST route saves a new user to the database and redirects them on success to questions.ejs
+// POST route saves a new user to the database and redirects them on success to builder.ejs
 router.post('/signup', function(req, res, next) {
   var user = new User({
     username: req.body.username
@@ -177,7 +177,7 @@ router.post('/signup', function(req, res, next) {
         if (loginError) {
           res.send(loginError);
         } else {
-          res.redirect('/questions');
+          res.redirect('/builder');
         }
       });
     }
@@ -185,7 +185,7 @@ router.post('/signup', function(req, res, next) {
 });
 
 router.post('/login', passport.authenticate('local'), function(req, res, next) {
-  res.redirect('/questions');
+  res.redirect('/builder');
 });
 
 router.get('/logout', function(req, res, next) {

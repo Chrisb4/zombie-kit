@@ -9,6 +9,8 @@
   <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Bangers' type='text/css'>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
   <link rel="stylesheet" href="stylesheets/style.css">
+  <link rel="stylesheet" href="stylesheets/builder.css">
+  <link rel="stylesheet" href="stylesheets/shopping_list.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 
 </head>
@@ -26,8 +28,8 @@
         </a>
 
       </div>
-      <p class="navbar-text" id="nav-title"><a href="/">Zombie Kit</a> </p>
-      <% if (typeof view != 'undefined' && view == 'default') { %>
+      <p class="navbar-text" id="nav-title"><a href="/">Zombie Survival Kit</a> </p>
+      <% if (typeof view != 'undefined' && view == 'index') { %>
         <form class="navbar-form navbar-right" action="/login" method="post">
           <div class="form-group">
             <label for="username">Username:</label>
@@ -39,7 +41,7 @@
             <input type="password" name="password" class="form-control">
           </div>
 
-          <input type="submit" value="Log In" class="btn btn-default">
+          <input type="submit" value="Log In" class="btn header btn-default">
         </form>
       <% } else { %>
       <ul>
