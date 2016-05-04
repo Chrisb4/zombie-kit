@@ -1,0 +1,17 @@
+body.shopping_list-view {
+  padding-top: 70px;
+  background-image: url(../images/Once-upon-a-Zombie-image-once-upon-a-zombie-36574221-1000-845.jpg);
+}
+
+li {
+  color: #fff;
+  list-style: none;
+}
+#cart-list {
+  border: 5px solid rgba(209, 214, 231, 0.7);
+  border-radius: 10px;
+}
+
+#cart-form {
+  margin-left: 200px;
+}

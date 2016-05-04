@@ -1,39 +1,41 @@
-<% include ./partials/header-index %>
+<% include ./partials/header %>
 
 
+  <div class="container-fluid">
+    <div class="row intro">
+      <div class="col-xs-8 col-md-8">
+        <section id="welcome">
+          <p id="welcome-title">Zombie Survival Kit</p>
+        </section>
 
-  <div class="row">
-    <div class="col-md-6">
-      <section id="welcome">
-        <p>Welcome to</p>
-        <p id="welcome-title">Zombie Survival Kit</p>
+      </div>
 
-      </section>
+      <div class="col-xs-3 col-md-3">
+        <div class="panel panel-success">
+          <div class="panel-heading">New Here?</div>
 
-    </div>
+          <div class="panel-body">
+            <p>Fill out the form below to create an account:</p>
+            <form action="/signup" method="post">
+              <div class="form-group">
+                <label for="username">Username:</label>
+                <input type="text" name="username" class="form-control">
+              </div>
 
-    <div class="col-md-6">
-      <div class="panel panel-success">
-        <div class="panel-heading">New Here?</div>
+              <div class="form-group">
+                <label for="password">Password:</label>
+                <input type="password" name="password" class="form-control">
+              </div>
 
-        <div class="panel-body">
-          <p>Fill out the form below to create an account:</p>
-          <form action="/signup" method="post">
-            <div class="form-group">
-              <label for="username">Username:</label>
-              <input type="text" name="username" class="form-control">
-            </div>
-
-            <div class="form-group">
-              <label for="password">Password:</label>
-              <input type="password" name="password" class="form-control">
-            </div>
-
-            <input type="submit" value="Sign Up" class="btn btn-success">
-          </form>
+              <input type="submit" value="Sign Up" class="btn btn-success">
+            </form>
+          </div>
         </div>
+      </div>
+      <div class="col-xs-1 col-md-1">
+
       </div>
     </div>
   </div>
 
-<% include ./partials/footer %>
+  <% include ./partials/footer %>
