@@ -37,6 +37,7 @@ $( document ).ready(function() {
 
   // Gets next question and displays the 2 choices. sends currentQuestion to route
   function getNextQuestion() {
+    $('#or').hide();
     $('.next-question-button').hide();
     $('.add-to-cart-button').hide();
     $('#product-display').html('');
@@ -104,6 +105,7 @@ $( document ).ready(function() {
       $('#product-details').css({ 'padding-left': '20px', 'padding-right': '20px'});
       $('h4').css({'padding-top': '30px'});
       $('#product-display').show();
+      $('#or').show();
       $('.add-to-cart-button').show();
       $('.next-question-button').show();
     });
