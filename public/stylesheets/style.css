@@ -1,9 +1,5 @@
 
-body {
-margin-bottom: 100px;
-background-image: url(../images/Once-upon-a-Zombie-image-once-upon-a-zombie-36574221-1000-845.jpg);
 
-}
 /* Navbar -- this affects the header and the footer    */
 .navbar {
    background-color: transparent;
@@ -34,6 +30,33 @@ nav li {
   color: black;
 }
 /*  End Navbar--------------------------------------  */
+
+/* Footer -------------------------------- */
+#footer {
+/*position: absolute-relative;*/
+/*bottom: 0px;*/
+/*display: inline;*/
+margin-bottom: 5px;
+margin-top: 20px;
+}
+#copyright {
+  padding-bottom: 30px;
+}
+#footer-links li {
+  display: inline;
+  padding-bottom: 10px;
+  padding-right: 30px;
+}
+.footer-icon {
+  font-size: 2em;
+}
+/*  End Footer ----------------------------- */
+
+body.index-view {
+margin-bottom: 100px;
+background-image: url(../images/Once-upon-a-Zombie-image-once-upon-a-zombie-36574221-1000-845.jpg);
+
+}
 
 /* Text on Index page --------------------------------*/
 .intro {
@@ -78,23 +101,16 @@ input[type="password"], textarea {
 
 /* End Sign up panel on Index page --------------------------------*/
 
-/* Footer -------------------------------- */
-#footer {
-/*position: absolute-relative;*/
-/*bottom: 0px;*/
-/*display: inline;*/
-margin-bottom: 5px;
-margin-top: 20px;
+.intro {
+  height: 100px;
+  width: 100px;
+  background-color: red;
+  display: inline-block;
 }
-#copyright {
-  padding-bottom: 30px;
+.intro.output {
+  background-color: green;
 }
-#footer-links li {
-  display: inline;
-  padding-bottom: 10px;
-  padding-right: 30px;
+#hit {
+  background-color: blue;
+  border: 30px dotted yellow;
 }
-.footer-icon {
-  font-size: 2em;
-}
-/*  End Footer ----------------------------- */

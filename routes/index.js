@@ -17,7 +17,7 @@ var client = amazon.createClient({
 // VIEWS
 // GET home page
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Zombie Kit', view: 'default' });
+  res.render('index', { title: 'Zombie Kit', view: 'index' });
 });
 
 // GET kit builder page
