@@ -45,6 +45,7 @@ $( document ).ready(function() {
     $('.add-to-cart-button').hide();
     $('#product-display').html('');
     $('#builder-text').html('');
+    $('.loader').show();
 
     var nextQuestion = $.ajax({
       url: '/questions/next',
@@ -54,7 +55,7 @@ $( document ).ready(function() {
     });
 
     nextQuestion.done(function(data){
-      console.log(data);
+      $('.loader').hide();
       var question = data.question;
       var choiceA = data.choiceA;
       var choiceB = data.choiceB;
@@ -85,6 +86,7 @@ $( document ).ready(function() {
     });
 
     choiceDisplay.done(function(data){
+      $('.loader').hide();
       var response = data.response;
       // setting product selected to current product global variable
       currentProduct = data.product;
@@ -120,6 +122,7 @@ $( document ).ready(function() {
     });
 
     addToCart.done(function(data){
+      $('.loader').hide();
       console.log(data);
     });
 
