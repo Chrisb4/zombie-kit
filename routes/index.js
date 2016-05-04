@@ -164,7 +164,7 @@ router.post('/cart-items', function(req, res, next) {
 });
 
 // ROUTES FOR NEW USER SIGN UP AND USER LOGIN
-// POST route saves a new user to the database and redirects them on success to questions.ejs
+// POST route saves a new user to the database and redirects them on success to builder.ejs
 router.post('/signup', function(req, res, next) {
   var user = new User({
     username: req.body.username
@@ -177,7 +177,7 @@ router.post('/signup', function(req, res, next) {
         if (loginError) {
           res.send(loginError);
         } else {
-          res.redirect('/questions');
+          res.redirect('/builder');
         }
       });
     }
@@ -185,7 +185,7 @@ router.post('/signup', function(req, res, next) {
 });
 
 router.post('/login', passport.authenticate('local'), function(req, res, next) {
-  res.redirect('/questions');
+  res.redirect('/builder');
 });
 
 router.get('/logout', function(req, res, next) {
