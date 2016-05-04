@@ -3,7 +3,7 @@
 <div class="container-fluid">
   <div class="row">
   <div class="col-md-3"></div>
-  <div class="col-md-6">
+  <div class="col-md-6 cart-test">
 
 
   <div id="cart-form">
@@ -14,7 +14,7 @@
       <!-- <div id="cart-list"> -->
         <ul id="ul-display">
         <% for(var i = 0; i < cartItems.length; i++) { %>
-           <li>
+           <li id="items<%=i%>">
            <%= cartItems[i].title %>
            <%= cartItems[i].price %>
            <input type="hidden" name="ASIN.<%= i + 1 %>" value="<%= cartItems[i].ASIN %>"/>
@@ -22,21 +22,16 @@
            </li>
         <% } %>
         </ul>
-         </div>
+
 
       <input type="submit" name="add" value="Buy this on Amazon" class="btn" id="sub-btn" />
     </form>
+     </div>
     </div>
     <div class="col-md-3"></div>
   </div>
 
-  <div class="row">
-    <div class="col-md-3"></div>
-    <div class="col-md-6">
-      <div id="paper"></div>
-    </div>
-    <div class="col-md-3"></div>
-  </div>
+
 
 
   </div>

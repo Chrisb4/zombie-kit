@@ -7,21 +7,51 @@ li {
   color: #fff;
   list-style: none;
 }
-#cart-list {
-  border: 5px solid rgba(209, 214, 231, 0.7);
-  border-radius: 10px;
+
+#cart-form {
+  margin-top: -50px;
+  background-image: url(../images/zombie-paper-big.png);
+  background-repeat: no-repeat;
+  height: 582px;
+  color: black;
 }
-
-
 
 #ul-display{
   margin-top: 50px;
-  padding-left: 50px;
-  padding-right: 50px;
+  margin-right: 100px;
+  padding-left: 20px;
+  padding-right: 100px;
+  font-family: 'Nothing You Could Do', cursive;
+  font-size: 1.2em;
+  color: black;
+  font-weight: bold;
+}
+ul li {
+
+  color: black;
+  transform: rotate(-10deg);
+}
+#items0 {
+  padding-top: 55px;
+}
+#items1 {
+  margin-left: 10px;
+}
+#items2 {
+  margin-left: 10px;
+}
+#items3 {
+  margin-left: 15px;
+}
+#items4 {
+  margin-left: 20px;
 }
 
-#paper {
-  width: 100%;
-  height: 100%;
-  background-image: url(../images/graph_paper.jpg);
+#sub-btn {
+  margin-top: 100px;
+  margin-right: 140px;
+  float: right;
+  transform: rotate(-10deg);
+  border: 1px solid black;
+
 }
