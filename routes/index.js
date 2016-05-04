@@ -29,7 +29,7 @@ router.get('/builder', /*isLoggedIn,*/ function(req, res, next) {
 // GET shopping_list page. Includes cartItem request to mLab
 // May want to add isLoggedIn function
 router.get('/shopping_list', function(req, res, next) {
-  var cartItemsRequest = CartItem.find({});
+  var cartItemsRequest = CartItem.find({userId: req.user._id});
 
   cartItemsRequest.then(function(cartItems) {
     res.render('shopping_list', { title: 'Shopping List | Zombie Kit', cartItems: cartItems, view: 'shopping_list'});
@@ -115,32 +115,6 @@ router.post('/choices', function(req, res, next) {
     productSearch.catch(function() {
       console.log('product search failed');
     });
-  });
-});
-
-// DELETE ON DEPLOYMENT
-// AMAZON TEST PRODUCTS ROUTE
-// GET product page
-router.get('/product', function(req, res, next) {
-  // Amazon product search
-  var productSearch = client.itemSearch({
-    keywords: 'shovel',
-    responseGroup: 'ItemAttributes,Offers,Images'
-  });
-
-  productSearch.then(function(results) {
-    console.log(results[0]);
-    var product = {
-      title: results[0].ItemAttributes[0].Title[0],
-      ASIN: results[0].ASIN[0],
-      price: results[0].OfferSummary[0].LowestNewPrice[0].FormattedPrice[0],
-      image: results[0].LargeImage[0].URL[0]
-    };
-    res.render('product', { title: 'Product | Zombie Kit', product: product });
-  });
-
-  productSearch.catch(function() {
-    console.log('product search failed');
   });
 });
 
