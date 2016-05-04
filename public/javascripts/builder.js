@@ -74,6 +74,8 @@ $( document ).ready(function() {
 
   // Choice function to determine A or B and display corresponding info
   function choiceSelected(choiceClicked) {
+    $('.loader').show();
+
     var choiceDisplay = $.ajax({
       url: '/choices',
       type: 'POST',
@@ -118,6 +120,7 @@ $( document ).ready(function() {
   // Adding product to cart
   function addProductToCart(currentProduct) {
     $('.add-to-cart-button').hide();
+    $('.loader').show();
 
     var addToCart = $.ajax({
       url: '/cart-items',

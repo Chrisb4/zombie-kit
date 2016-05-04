@@ -5,29 +5,31 @@
   <div class="col-md-6">
 
 
-  <div id="cart-list">  <ul>
-    <% for(var i=0; i<cartItems.length; i++) {%>
-       <li><%= cartItems[i].title %> <%= cartItems[i].price %></li>
-    <% } %>
-    </ul>
-  </div>
   <div id="cart-form">
     <form method="GET" action="http://www.amazon.com/gp/aws/cart/add.html">
       <input type="hidden" name="AWSAccessKeyId" value="Access Key ID" />
       <input type="hidden" name="AssociateTag" value="Associate Tag" />
-      <input type="hidden" name="ASIN.1" value="B000B6Q6BA"/>
-      <input type="hidden" name="Quantity.1" value="10"/>
-      <input type="hidden" name="ASIN.2" value="B0182MIUX6"/>
-      <input type="hidden" name="Quantity.2" value="1">
+
+      <!-- <div id="cart-list"> -->
+        <ul>
+        <% for(var i = 0; i < cartItems.length; i++) { %>
+           <li>
+           <%= cartItems[i].title %>
+           <%= cartItems[i].price %>
+           <input type="hidden" name="ASIN.<%= i + 1 %>" value="<%= cartItems[i].ASIN %>"/>
+           <input type="hidden" name="Quantity.<%= i + 1 %>" value="1"/>
+           </li>
+        <% } %>
+        </ul>
+      // </div>
 
       <input type="submit" name="add" value="Buy this on Amazon" class="btn" id="sub-btn" />
     </form>
     </div>
+
     </div>
   <div class="col-md-3"></div>
 </div>
-
-
 
 
 
