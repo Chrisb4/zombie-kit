@@ -7,6 +7,7 @@
   </title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
   <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Bangers' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Nothing+You+Could+Do' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
   <link rel="stylesheet" href="stylesheets/style.css">
   <link rel="stylesheet" href="stylesheets/builder.css">
@@ -44,9 +45,12 @@
           <input type="submit" value="Log In" class="btn header btn-default">
         </form>
       <% } else { %>
-      <ul>
-        <li><a href="/shopping_list"><i class="fa fa-shopping-cart navbar-right" id="shopping-cart" aria-hidden="true"></i></a></li>
-      </ul>
+      <div class="navbar-right" >
+        <ul id="header-links">
+          <li><a href="/shopping_list"><i class="fa fa-shopping-cart header-icon"  aria-hidden="true"></i></a></li>
+          <li><a href="/logout"><i class="fa fa-sign-out header-icon"  aria-hidden="true"></i></a></li>
+        </ul>
+      </div>
       <% } %>
 
     </div>

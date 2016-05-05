@@ -1,35 +1,50 @@
 <% include ./partials/header %>
 
 <div class="container-fluid">
+  <div class="list-name">
+    <h1><%= currentUser %>'s supply sheet</h1>
+  </div>
+  <div class="row">
   <div class="col-md-3"></div>
-  <div class="col-md-6">
+  <div class="col-md-6 cart-test">
 
 
-  <div id="cart-form">
-    <form method="GET" action="http://www.amazon.com/gp/aws/cart/add.html" target="_blank">
+  <div class="form-div">
+    <form class="form-place" method="GET" action="http://www.amazon.com/gp/aws/cart/add.html" target="_blank">
       <input type="hidden" name="AWSAccessKeyId" value="Access Key ID" />
       <input type="hidden" name="AssociateTag" value="Associate Tag" />
 
       <!-- <div id="cart-list"> -->
-        <ul>
+        <ul id="ul-display">
         <% for(var i = 0; i < cartItems.length; i++) { %>
-           <li>
+           <li id="items<%=i%>">
            <%= cartItems[i].title %>
            <%= cartItems[i].price %>
+           <% console.log(cartItems[i].price) %>
            <input type="hidden" name="ASIN.<%= i + 1 %>" value="<%= cartItems[i].ASIN %>"/>
            <input type="hidden" name="Quantity.<%= i + 1 %>" value="1"/>
            </li>
         <% } %>
+        <% if (cartItems[0] == undefined) { %>
+            <li id="items0">You are not prepared. All the zombies are coming to your house!</li>
+        <%} else {  } %>
         </ul>
-      // </div>
 
-      <input type="submit" name="add" value="Buy this on Amazon" class="btn" id="sub-btn" />
+      <% if (cartItems[0] !== undefined) { %>
+      <input type="submit" name="add" value="Buy on Amazon" class="btn" id="sub-btn" />
+      <%} else {  } %>
     </form>
+     </div>
     </div>
+    <div class="col-md-3"></div>
+  </div>
 
-    </div>
-  <div class="col-md-3"></div>
-</div>
+
+
+
+  </div>
+
+
 
 
 

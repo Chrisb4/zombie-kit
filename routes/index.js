@@ -14,6 +14,8 @@ var client = amazon.createClient({
   awsSecret: process.env.AWS_SECRET_KEY,
   awsTag: process.env.AWS_TAG
 });
+// Variable to pass current user to shopping_list
+var currentUser;
 
 // VIEWS
 // GET home page
@@ -30,9 +32,9 @@ router.get('/builder', /*isLoggedIn,*/ function(req, res, next) {
 // May want to add isLoggedIn function
 router.get('/shopping_list', function(req, res, next) {
   var cartItemsRequest = CartItem.find({userId: req.user._id});
-
+  console.log(req.body.username);
   cartItemsRequest.then(function(cartItems) {
-    res.render('shopping_list', { title: 'Shopping List | Zombie Kit', cartItems: cartItems, view: 'shopping_list'});
+    res.render('shopping_list', { title: 'Shopping List | Zombie Kit', cartItems: cartItems, view: 'shopping_list', currentUser: currentUser});
   });
 });
 
@@ -128,6 +130,8 @@ router.post('/signup', function(req, res, next) {
   var user = new User({
     username: req.body.username
   });
+  currentUser = req.body.username;
+  console.log(req.body.username);
   User.register(user, req.body.password, function(error) {
     if (error) {
       res.send(error);
@@ -144,6 +148,8 @@ router.post('/signup', function(req, res, next) {
 });
 
 router.post('/login', passport.authenticate('local'), function(req, res, next) {
+  currentUser = req.body.username;
+  console.log(req.body.username);
   res.redirect('/builder');
 });
 
