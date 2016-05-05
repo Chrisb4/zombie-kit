@@ -25,10 +25,14 @@
            <input type="hidden" name="Quantity.<%= i + 1 %>" value="1"/>
            </li>
         <% } %>
+        <% if (cartItems[0] == undefined) { %>
+            <li id="items0">You are not prepared. All the zombies are coming to your house!</li>
+        <%} else {  } %>
         </ul>
 
-
+      <% if (cartItems[0] !== undefined) { %>
       <input type="submit" name="add" value="Buy on Amazon" class="btn" id="sub-btn" />
+      <%} else {  } %>
     </form>
      </div>
     </div>
