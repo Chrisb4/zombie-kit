@@ -2,39 +2,53 @@ body.shopping_list-view {
   padding-top: 70px;
   background-image: url(../images/Once-upon-a-Zombie-image-once-upon-a-zombie-36574221-1000-845.jpg);
 }
-
-li {
-  color: #fff;
-  list-style: none;
+.list-name {
+  margin-top: -70px;
+  text-align: center;
+  font-family: 'Bangers', cursive;
+  color: rgba(219, 0, 0, 0.75);
 }
 
-#cart-form {
-  margin-top: -50px;
+
+.form-div {
+
   background-image: url(../images/zombie-paper-big.png);
   background-repeat: no-repeat;
+
   height: 582px;
+  margin-right: 70px;
   color: black;
-  
+  position: relative;
+
+}
+.form-place {
+  height: 386px;
+
+  transform: rotate(-10deg);
+  margin-left: 10px;
+  margin-right: 80px;
+
+  position: absolute;
+
 }
 
 #ul-display{
-  margin-top: 50px;
-  margin-right: 100px;
+  margin-top: -10px;
+
   padding-left: 20px;
   padding-right: 100px;
   font-family: 'Nothing You Could Do', cursive;
   font-size: 1.2em;
   color: black;
   font-weight: bold;
+  list-style: none;
 }
 
 #ul-display li {
   color: black;
-  transform: rotate(-10deg);
+
 }
-.form-place {
-  /*position: relative;*/
-}
+
 
 #items0 {
   padding-top: 55px;
@@ -53,10 +67,9 @@ li {
 }
 
 #sub-btn {
-
-  top: 250px;
-  right: 170px;
-  transform: rotate(-10deg);
-  border: 1px solid black;
+  bottom: -60px;
+  right: 21px;
   position: absolute;
+  border: 1px solid black;
+
 }

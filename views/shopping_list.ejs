@@ -1,12 +1,15 @@
 <% include ./partials/header %>
 
 <div class="container-fluid">
+  <div class="list-name">
+    <h1><%= currentUser %>'s supply sheet</h1>
+  </div>
   <div class="row">
   <div class="col-md-3"></div>
   <div class="col-md-6 cart-test">
 
 
-  <div id="cart-form">
+  <div class="form-div">
     <form class="form-place" method="GET" action="http://www.amazon.com/gp/aws/cart/add.html" target="_blank">
       <input type="hidden" name="AWSAccessKeyId" value="Access Key ID" />
       <input type="hidden" name="AssociateTag" value="Associate Tag" />
