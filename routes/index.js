@@ -24,7 +24,7 @@ router.get('/', function(req, res, next) {
 });
 
 // GET kit builder page
-router.get('/builder', /*isLoggedIn,*/ function(req, res, next) {
+router.get('/builder', isLoggedIn, function(req, res, next) {
   res.render('builder', { title: 'Builder | Zombie Kit', view: 'builder' });
 });
 

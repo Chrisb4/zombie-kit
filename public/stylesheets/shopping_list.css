@@ -16,60 +16,60 @@ body.shopping_list-view {
   background-repeat: no-repeat;
 
   height: 582px;
-  margin-right: 70px;
+
   color: black;
   position: relative;
 
 }
 .form-place {
-  height: 386px;
 
-  transform: rotate(-10deg);
-  margin-left: 10px;
-  margin-right: 80px;
-
-  position: absolute;
 
 }
 
 #ul-display{
-  margin-top: -10px;
-
-  padding-left: 20px;
-  padding-right: 100px;
+  padding: 0;
   font-family: 'Nothing You Could Do', cursive;
   font-size: 1.2em;
   color: black;
   font-weight: bold;
   list-style: none;
+  height: 200px;
+  transform: rotate(-10deg);
+  position: absolute;
+  overflow: scroll;
+  margin: 0;
+  width: 470px;
+  top: 60px;
+  left: 30px;
 }
 
 #ul-display li {
   color: black;
-
+  border-bottom: 1px dotted #666;
+  padding: 4px 0;
+  overflow: auto;
 }
 
 
-#items0 {
-  padding-top: 55px;
-}
-#items1 {
-  margin-left: 10px;
-}
-#items2 {
-  margin-left: 10px;
-}
-#items3 {
-  margin-left: 15px;
-}
-#items4 {
-  margin-left: 20px;
-}
+
 
 #sub-btn {
-  bottom: -60px;
-  right: 21px;
+  bottom: 280px;
+  right: 81px;
+  transform: rotate(-10deg);
   position: absolute;
   border: 1px solid black;
 
+}
+
+.product-title {
+  float: left;
+  width: 80%;
+}
+
+.product-price {
+  float: right;
+  width: 20%;
+  text-align: right;
+  font-size: 120%;
 }
