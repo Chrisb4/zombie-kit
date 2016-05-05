@@ -18,7 +18,11 @@
   font-size: 2em;
 
 }
-#shopping-cart {
+#header-links li {
+  display: inline;
+}
+.header-icon {
+
   margin-right: 20px;
   font-size: 4em;
 }

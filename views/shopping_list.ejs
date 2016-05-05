@@ -17,6 +17,7 @@
            <li id="items<%=i%>">
            <%= cartItems[i].title %>
            <%= cartItems[i].price %>
+           <% console.log(cartItems[i].price) %>
            <input type="hidden" name="ASIN.<%= i + 1 %>" value="<%= cartItems[i].ASIN %>"/>
            <input type="hidden" name="Quantity.<%= i + 1 %>" value="1"/>
            </li>
@@ -24,7 +25,7 @@
         </ul>
 
 
-      <input type="submit" name="add" value="Buy this on Amazon" class="btn" id="sub-btn" />
+      <input type="submit" name="add" value="Buy on Amazon" class="btn" id="sub-btn" />
     </form>
      </div>
     </div>
