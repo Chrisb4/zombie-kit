@@ -70,14 +70,21 @@ background-image: url(../images/Once-upon-a-Zombie-image-once-upon-a-zombie-3657
 .intro {
   margin-top: 240px;
 }
-
+.welcome {
+  font-family: 'Bangers', cursive;
+  color: rgba(219, 0, 0, 0.75);
+}
 #welcome-title {
   margin-top: 80px;
   margin-left: 50px;
-  font-family: 'Bangers', cursive;
-  color: rgba(219, 0, 0, 0.75);
   font-size: 7.5em;
+}
+#welcome-pitch {
+  margin-left: 50px;
+  margin-right: 180px;
+  font-size: 2em;
 
+  color: rgba(209, 214, 231, 0.7);
 }
 /* End Text on Index page --------------------------------*/
 
