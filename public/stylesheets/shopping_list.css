@@ -14,7 +14,7 @@ li {
   background-repeat: no-repeat;
   height: 582px;
   color: black;
-  postion: relative;
+  
 }
 
 #ul-display{
@@ -33,7 +33,7 @@ li {
   transform: rotate(-10deg);
 }
 .form-place {
-  position: relative;
+  /*position: relative;*/
 }
 
 #items0 {
