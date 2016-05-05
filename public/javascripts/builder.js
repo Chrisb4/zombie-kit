@@ -37,7 +37,6 @@ $( document ).ready(function() {
 
   // Gets next question and displays the 2 choices. sends currentQuestion to route
   function getNextQuestion() {
-    $('#or').hide();
     $('.next-question-button').hide();
     $('.add-to-cart-button').hide();
     $('#product-display').html('');
@@ -101,13 +100,9 @@ $( document ).ready(function() {
               currentProduct.price +
           '</h4>' +
         '</div>');
-    // Should NOT have done this CSS in javascript - move it to builder.css
-      $('#product-display').css({border: '5px solid rgba(209, 214, 231, 0.7)', 'border-radius': '10px', background: 'rgba(255, 255, 255, 1)', 'color': '#000', 'overflow': 'auto'});
-      $('#product-image').css({'float': 'left'});
-      $('#product-details').css({ 'padding-left': '20px', 'padding-right': '20px'});
-      $('h4').css({'padding-top': '30px'});
+
       $('#product-display').show();
-      $('#or').show();
+
       $('.add-to-cart-button').show();
       $('.next-question-button').show();
     });
@@ -132,6 +127,7 @@ $( document ).ready(function() {
 
     addToCart.done(function(data){
       $('.loader').hide();
+      $('.next-question-button').trigger('click');
       console.log(data);
     });
 
