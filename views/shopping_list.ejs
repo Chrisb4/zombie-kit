@@ -17,10 +17,9 @@
       <!-- <div id="cart-list"> -->
         <ul id="ul-display">
         <% for(var i = 0; i < cartItems.length; i++) { %>
-           <li id="items<%=i%>">
-           <%= cartItems[i].title %>
-           <%= cartItems[i].price %>
-           <% console.log(cartItems[i].price) %>
+           <li id="items<%=i%>" class="product-item">
+           <div class="product-title"><%= cartItems[i].title %></div>
+           <div class="product-price"><%= cartItems[i].price %></div>
            <input type="hidden" name="ASIN.<%= i + 1 %>" value="<%= cartItems[i].ASIN %>"/>
            <input type="hidden" name="Quantity.<%= i + 1 %>" value="1"/>
            </li>

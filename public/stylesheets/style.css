@@ -1,4 +1,11 @@
-
+.navbar-brand img {
+  -webkit-filter: invert(100%) opacity(60%);
+  filter: invert(100%) opacity(60%);
+}
+button, .btn {
+  font-family: 'Bangers', cursive;
+  font-size: 20px;
+}
 
 /* Navbar -- this affects the header and the footer    */
 .navbar {
