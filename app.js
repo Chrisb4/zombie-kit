@@ -34,10 +34,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(session({
-  secret: process.env.SESSION_KEY || 'foobar',
-  resave: true,
-  saveUninitialized: false,
-  cookie: {expires : new Date(Date.now() + 360000000)}
+  maxAge: new Date(Date.now() + 36000000),
+  secret: 'zombie-kit'
 }));
 app.use(passport.initialize());
 app.use(passport.session());
