@@ -27,14 +27,15 @@ li {
   color: black;
   font-weight: bold;
 }
-.form-place {
-  position: relative;
-}
-ul li {
 
+#ul-display li {
   color: black;
   transform: rotate(-10deg);
 }
+.form-place {
+  position: relative;
+}
+
 #items0 {
   padding-top: 55px;
 }
