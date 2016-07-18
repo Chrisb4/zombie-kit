@@ -36,7 +36,7 @@ body.shopping_list-view {
   height: 200px;
   transform: rotate(-10deg);
   position: absolute;
-  overflow: scroll;
+  overflow: auto;
   margin: 0;
   width: 470px;
   top: 60px;
